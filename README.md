@@ -1,3 +1,24 @@
+# Purpose of this fork
+
+This is my fork of the original fpinscala/fpinscala repository for the book Functional Programming in Scala. 
+The purpose is to do the exercises and compare to the model answers.
+
+# Learnings
+
+## Notes
+
+| Exercise  | Notes  |
+| ---       | ---    |
+| 2.1       | I thought of a very nice solution for an efficient tail recursive Fibonacci function. |
+| 3.1 - 3.6 | I had a redundant case statement in exercise 3.5 and 
+
+## Tips
+
+1. Check pattern matches for redundant case statements i.e. where a later case statement is more general and covers the earlier specific case.
+
+
+# Original readme file contents
+
 [![Build status](https://travis-ci.org/fpinscala/fpinscala.svg?branch=master)](https://travis-ci.org/fpinscala/fpinscala)
 
 This repository contains exercises, hints, and answers for the book
