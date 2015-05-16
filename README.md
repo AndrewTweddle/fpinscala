@@ -10,7 +10,8 @@ The purpose is to do the exercises and compare to the model answers.
 | Exercise  | Notes  |
 | ---       | ---    |
 | 2.1       | I thought of a very nice solution for an efficient tail recursive Fibonacci function. |
-| 3.1 - 3.6 | I had a redundant case statement in exercise 3.5 and 
+| 3.1 - 3.6 | I had a redundant case statement in exercise 3.5 and 3.6. |
+
 
 ## Tips
 
