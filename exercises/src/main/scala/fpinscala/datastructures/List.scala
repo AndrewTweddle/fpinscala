@@ -88,6 +88,7 @@ object List { // `List` companion object. Contains functions for creating and wo
   
   def sumWithFoldLeft(l: List[Int]): Int = foldLeft(l, 0)(_ + _)
   def productWithFoldLeft(l: List[Double]): Double = foldLeft(l, 1.0)(_ * _)
+  def reverse[A](l: List[A]): List[A] = foldLeft(l, Nil: List[A])((rev,a)=>Cons(a,rev))
 
   def map[A,B](l: List[A])(f: A => B): List[B] = sys.error("todo")
 }
