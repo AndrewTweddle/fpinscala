@@ -13,3 +13,4 @@ project.vim
 answers/bin
 exercises/bin
 .cache
+.worksheet
