@@ -7,15 +7,23 @@ The purpose is to do the exercises and compare to the model answers.
 
 ## Notes
 
-| Exercise  | Notes  |
-| ---       | ---    |
-| 2.1       | I thought of a very nice solution for an efficient tail recursive Fibonacci function. |
-| 3.1 - 3.6 | I had a redundant case statement in exercise 3.5 and 3.6. |
-
+| Exercise    | Notes  |
+| ---         | ---    |
+| 2.1         | I thought of an elegant solution for an efficient tail recursive Fibonacci function. |
+| 3.1 - 3.6   | I had a redundant case statement in exercise 3.5 and 3.6. |
+| 3.6         | Q: Why can't the init function be implemented in constant time like tail? A: There are a long chain of pointers referencing the last item, so removing that last item causes cascading changes all the way up the structure. |
+| 3.7         | Q: Can product, implemented using foldRight, immediately halt the recursion if it encounters a zero? A: Not without remaining type-agnostic. Possibly define a foldRightWhile function taking an extra predicate and outcome if false. |
+| 3.8         | Q: foldRight(List(1,2,3), Nil: List[Int])(Cons(_,_))) = Cons(1,Cons(2,Cons(3,Nil))) = List(1,2,3). What does this say about their relationship? A: foldRight with Cons is the identity function for lists? }
+| 3.9 - 3.11  | |
 
 ## Tips
 
-1. Check pattern matches for redundant case statements i.e. where a later case statement is more general and covers the earlier specific case.
+1. Check pattern matches for redundant case statements i.e. where a more general case statement covers an earlier specific case.
+
+
+## Thoughts
+
+1. It sucks that Scala doesn't have automatic currying and type inference over all parameters. Multiple parameter lists is a clever but kludgy idea.
 
 
 # Original readme file contents
