@@ -133,4 +133,38 @@ object dataStructuresWorksheet {
       )
     )
   ) == 3                                          //> res66: Boolean = true
+  
+  // Do exercise 3.27: expect the following to all return true
+  depth(Leaf(1)) == 1                             //> res67: Boolean = true
+  depth(Branch(Leaf(1), Leaf(2))) == 2            //> res68: Boolean = true
+  
+  depth(
+    Branch(
+      Leaf(1),
+      Branch(
+        Leaf(2),
+        Leaf(3)
+      )
+    )
+  ) == 3                                          //> res69: Boolean = true
+  
+  depth[String](
+    Branch(  // T
+      Leaf("TL"),
+      Branch(  // TR
+        Branch(
+          Leaf("TRL"),
+        	Branch(  // TRR
+        	  Branch(  // TRRL
+        			Leaf("TRRLL"),
+        			Leaf("TRRLR")
+        	  ),
+        	  Leaf("TRRR")
+        	)
+        ),
+        Leaf("TRR")
+      )
+    )
+  ) == 6                                          //> res70: Boolean = true
+  
 }

@@ -17,5 +17,10 @@ object Tree {
     case Leaf(a) => a
     case Branch(l, r) => Math.max(maximum(l), maximum(r))
   }
-
+  
+  // Exercise 3.27:
+  def depth[A](tree: Tree[A]): Int = tree match {
+    case Leaf(_) => 1
+    case Branch(l, r) => 1 + Math.max(depth(l), depth(r))
+  }
 }
