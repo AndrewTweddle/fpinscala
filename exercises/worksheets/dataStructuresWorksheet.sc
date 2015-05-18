@@ -1,6 +1,6 @@
 import fpinscala.datastructures._
 import fpinscala.datastructures.List._
-import fpinscala.datastructures.Tree._
+import fpinscala.datastructures.Tree.{map => mapTree, _}
 
 object dataStructuresWorksheet {
   length(List(1,2,3))                             //> res0: Int = 3
@@ -167,4 +167,34 @@ object dataStructuresWorksheet {
     )
   ) == 6                                          //> res70: Boolean = true
   
+  // Exercise 3.28:
+  val twig = Leaf(1)                              //> twig  : fpinscala.datastructures.Leaf[Int] = Leaf(1)
+  val shallowTree = Branch(Leaf(1), Branch(Leaf(2), Leaf(3)))
+                                                  //> shallowTree  : fpinscala.datastructures.Branch[Int] = Branch(Leaf(1),Branch
+                                                  //| (Leaf(2),Leaf(3)))
+  val deepTree =
+    Branch(  // T
+      Leaf("TL"),
+      Branch(  // TR
+        Branch(
+          Leaf("TRL"),
+        	Branch(  // TRR
+        	  Branch(  // TRRL
+        			Leaf("TRRLL"),
+        			Leaf("TRRLR")
+        	  ),
+        	  Leaf("TRRR")
+        	)
+        ),
+        Leaf("TRR")
+      )
+    )                                             //> deepTree  : fpinscala.datastructures.Branch[String] = Branch(Leaf(TL),Branc
+                                                  //| h(Branch(Leaf(TRL),Branch(Branch(Leaf(TRRLL),Leaf(TRRLR)),Leaf(TRRR))),Leaf
+                                                  //| (TRR)))
+  mapTree(twig)(_ + 0.5)                          //> res71: fpinscala.datastructures.Tree[Double] = Leaf(1.5)
+  mapTree(shallowTree)(_ + 0.5)                   //> res72: fpinscala.datastructures.Tree[Double] = Branch(Leaf(1.5),Branch(Leaf
+                                                  //| (2.5),Leaf(3.5)))
+  mapTree(deepTree)(x => s"_${x}_")               //> res73: fpinscala.datastructures.Tree[String] = Branch(Leaf(_TL_),Branch(Bra
+                                                  //| nch(Leaf(_TRL_),Branch(Branch(Leaf(_TRRLL_),Leaf(_TRRLR_)),Leaf(_TRRR_))),L
+                                                  //| eaf(_TRR_)))
 }

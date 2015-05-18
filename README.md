@@ -27,6 +27,7 @@ The purpose is to do the exercises and compare to the model answers.
 | 3.22 - 3.23 | None |
 | 3.24        | My implementation appears fine. But the model answer is slightly better, because it is more obvious that all possible cases have been handled. |
 | 3.25 - 3.27 | None |
+| 3.28        | I don't think I agree with the discussion of ADTs and encapsulation on page 46 of the book. Encapsulation is about allowing the implementation to be changed without code changes cascading to consumers of the interface. Mutability is moot. |
 
 
 ## Tips
