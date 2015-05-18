@@ -26,6 +26,7 @@ The purpose is to do the exercises and compare to the model answers.
 | 3.19 - 3.21 | filter, flatMap and filter via flatMap. Note that I returned "Nil: List[A]" where Nil would be sufficient, according to model answer. |
 | 3.22 - 3.23 | None |
 | 3.24        | My implementation appears fine. But the model answer is slightly better, because it is more obvious that all possible cases have been handled. |
+| 3.25        | None |
 
 
 ## Tips

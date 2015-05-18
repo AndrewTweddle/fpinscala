@@ -1,5 +1,6 @@
 import fpinscala.datastructures._
 import fpinscala.datastructures.List._
+import fpinscala.datastructures.Tree._
 
 object dataStructuresWorksheet {
   length(List(1,2,3))                             //> res0: Int = 3
@@ -85,4 +86,17 @@ object dataStructuresWorksheet {
   hasSubsequence(List(1,2,3), List(1))            //> res56: Boolean = true
   !hasSubsequence(List(1,2,3),List(1,4))          //> res57: Boolean = true
   !hasSubsequence(List(1,2,3), List(2,4))         //> res58: Boolean = true
+  
+  // Exercise 3.25: expect the following to all return true...
+  size(Leaf(1)) == 1                              //> res59: Boolean = true
+  size(Branch(Leaf(1), Leaf(2))) == 3             //> res60: Boolean = true
+  size(
+    Branch(
+      Branch(
+        Leaf(1),
+        Leaf(2)
+      ),
+      Leaf(3)
+    )
+  ) == 5                                          //> res61: Boolean = true
 }
