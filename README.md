@@ -2,6 +2,7 @@
 
 This is my fork of the original 
 [fpinscala/fpinscala](https://github.com/fpinscala/fpinscala)
+repository for the book ["Functional Programming in Scala"](http://www.manning.com/bjarnason/). 
 The purpose is to do the exercises and compare to the model answers.
 
 # Learnings
@@ -19,6 +20,7 @@ The purpose is to do the exercises and compare to the model answers.
 | 3.13        | How to write foldLeft in terms of foldRight and vice versa... reverse(foldLeft(List(1,2,3), Nil:List[Int])((l, a) => Cons(a, l))) == foldRight(List(1,2,3), Nil:List[Int])((a, l) => Cons(a, l)) == Cons(1,Cons(2,Cons(3,Nil))) |
 | 3.14        | None |
 | 3.15        | Implemented concatListOfLists as a foldRight over append. append is linear in the first list, but foldLeft keeps on repeating the first term. So I changed to foldRight to fix this. |
+| 3.16        | Why don't underscores work? def addOne(l: List[Int]): List[Int] = foldRight(l, Nil: List[Int])((a,b) => Cons(a + 1, b)) but not def addOne(l: List[Int]): List[Int] = foldRight(l, Nil: List[Int])(Cons(_ + 1, _)) |
 
 
 ## Tips

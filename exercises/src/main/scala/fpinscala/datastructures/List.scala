@@ -99,6 +99,9 @@ object List { // `List` companion object. Contains functions for creating and wo
   
   // Exercise 3.15: Write a function that concatenates a list of lists into a single list
   def concatListOfLists[A](ll: List[List[A]]) = foldRight(ll, Nil: List[A])(append)
-
+  
+  // Exercise 3.16: Write a function that transforms a list of integers by adding 1 to each element:
+  def addOne(l: List[Int]): List[Int] = foldRight(l, Nil: List[Int])((a,b) => Cons(a + 1, b))
+  
   def map[A,B](l: List[A])(f: A => B): List[B] = sys.error("todo")
 }

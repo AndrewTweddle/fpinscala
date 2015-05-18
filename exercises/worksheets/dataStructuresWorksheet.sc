@@ -25,4 +25,6 @@ object dataStructuresWorksheet {
   concatListOfLists(List(List(1,2,3), List(4,5,6), Nil: List[Int], List(7,8,9)))
                                                   //> res14: fpinscala.datastructures.List[Int] = Cons(1,Cons(2,Cons(3,Cons(4,Cons
                                                   //| (5,Cons(6,Cons(7,Cons(8,Cons(9,Nil)))))))))
+  addOne(List(1,2,3))                             //> res15: fpinscala.datastructures.List[Int] = Cons(2,Cons(3,Cons(4,Nil)))
+  addOne(Nil : List[Int])                         //> res16: fpinscala.datastructures.List[Int] = Nil
 }
