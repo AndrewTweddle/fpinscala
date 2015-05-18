@@ -125,5 +125,11 @@ object List { // `List` companion object. Contains functions for creating and wo
   def filterViaFlatMap[A](l: List[A])(pred: A => Boolean): List[A] =
     flatMap(l)(a => if (pred(a)) List(a) else Nil: List[A])
     
-  
+  // Exercise 3.22: Write a function taking two lists 
+  // and constructs a list consisting of the sum of each corresponding pair of elements:
+  def addCorrespondingElements(as: List[Int], bs: List[Int]): List[Int] = (as, bs) match {
+    case (Nil, _) => Nil
+    case (_, Nil) => Nil
+    case (Cons(ha, ta), Cons(hb, tb)) => Cons(ha + hb, addCorrespondingElements(ta, tb))
+  }
 }
