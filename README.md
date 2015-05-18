@@ -25,6 +25,7 @@ The purpose is to do the exercises and compare to the model answers.
 | 3.18        | Generalizing map is easy via foldRight. But the model answer also give two other implementations that are safer against stack overflows. |
 | 3.19 - 3.21 | filter, flatMap and filter via flatMap. Note that I returned "Nil: List[A]" where Nil would be sufficient, according to model answer. |
 | 3.22 - 3.23 | None |
+| 3.24        | My implementation appears fine. But the model answer is slightly better, because it is more obvious that all possible cases have been handled. |
 
 
 ## Tips
@@ -33,6 +34,7 @@ The purpose is to do the exercises and compare to the model answers.
 2. When using foldRight, consider using foldLeft on the reversed list or a mutable local variable for greater efficiency and safety against stack overflows.
    _Edit: Not necessary... The [Scala 2.11.0 implementation](https://github.com/scala/scala/blob/v2.11.0/src/library/scala/collection/immutable/List.scala#L399) does this already_
 3. Nil: List[B] is necessary in fold calls to bind the return type. Just Nil is probably sufficient in the implementation as the type is already bound.
+4. In pattern matches, see if there is a way to make the last clause a "case _ => ...", as this ensures that all scenarios have been covered.
 
 
 ## Thoughts

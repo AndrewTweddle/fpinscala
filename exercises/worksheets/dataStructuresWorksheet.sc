@@ -65,4 +65,24 @@ object dataStructuresWorksheet {
   zipWith(List(1,2,3), List(-1, -2, -3, -4))(_ + _)
                                                   //> res40: fpinscala.datastructures.List[Int] = Cons(0,Cons(0,Cons(0,Nil)))
   zipWith(List(1), List(2))(_ + _)                //> res41: fpinscala.datastructures.List[Int] = Cons(3,Nil)
+  
+  // Exercise 3.24: expect the following to all return true...
+  !startsWith(List(1,2,3), List(2,3))             //> res42: Boolean = true
+  !startsWith(List(1,2,3), List(1,2,3,4))         //> res43: Boolean = true
+  startsWith(List(1,2,3), List(1,2,3))            //> res44: Boolean = true
+  startsWith(List(1,2,3), Nil)                    //> res45: Boolean = true
+  startsWith(Nil, Nil)                            //> res46: Boolean = true
+  !startsWith(Nil, List(1))                       //> res47: Boolean = true
+  startsWith(List(1,2,3), List(1))                //> res48: Boolean = true
+  
+  hasSubsequence(List(1,2,3), List(2,3))          //> res49: Boolean = true
+  hasSubsequence(List(1,2,3,4), List(2,3))        //> res50: Boolean = true
+  hasSubsequence(List(1,2,3), List(1,2))          //> res51: Boolean = true
+  hasSubsequence(List(1,2,3), List(1,2,3))        //> res52: Boolean = true
+  hasSubsequence(List(1,2,3), Nil)                //> res53: Boolean = true
+  hasSubsequence(Nil, Nil)                        //> res54: Boolean = true
+  !hasSubsequence(Nil, List(1))                   //> res55: Boolean = true
+  hasSubsequence(List(1,2,3), List(1))            //> res56: Boolean = true
+  !hasSubsequence(List(1,2,3),List(1,4))          //> res57: Boolean = true
+  !hasSubsequence(List(1,2,3), List(2,4))         //> res58: Boolean = true
 }
