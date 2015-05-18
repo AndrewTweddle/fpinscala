@@ -19,7 +19,7 @@ The purpose is to do the exercises and compare to the model answers.
 | 3.9 - 3.12  | None |
 | 3.13        | How to write foldLeft in terms of foldRight and vice versa... reverse(foldLeft(List(1,2,3), Nil:List[Int])((l, a) => Cons(a, l))) == foldRight(List(1,2,3), Nil:List[Int])((a, l) => Cons(a, l)) == Cons(1,Cons(2,Cons(3,Nil))) |
 | 3.14        | None |
-| 3.15        | Implemented concatListOfLists as a foldRight over append. append is linear in the first list, but foldLeft keeps on repeating the first term. So I changed to foldRight to fix this. |
+| 3.15        | Implemented concatListOfLists as a foldRight over append. append is linear in the first list, but foldLeft keeps on re-generating the first term, so the effect is quadratic. So I changed to foldRight to fix this. |
 | 3.16        | Why don't underscores work? def addOne(l: List[Int]): List[Int] = foldRight(l, Nil: List[Int])((a,b) => Cons(a + 1, b)) but not def addOne(l: List[Int]): List[Int] = foldRight(l, Nil: List[Int])(Cons(_ + 1, _)) |
 | 3.17        | None |
 | 3.18        | Generalizing map is easy via foldRight. But the model answer also give two other implementations that are safer against stack overflows. |
@@ -29,6 +29,7 @@ The purpose is to do the exercises and compare to the model answers.
 
 1. Check pattern matches for redundant case statements i.e. where a more general case statement covers an earlier specific case.
 2. When using foldRight, consider using foldLeft on the reversed list or a mutable local variable for greater efficiency and safety against stack overflows.
+   _Edit: Not necessary... The [Scala 2.11.0 implementation](https://github.com/scala/scala/blob/v2.11.0/src/library/scala/collection/immutable/List.scala#L399) does this already_
 
 
 ## Thoughts
