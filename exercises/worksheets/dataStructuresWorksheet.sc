@@ -99,4 +99,38 @@ object dataStructuresWorksheet {
       Leaf(3)
     )
   ) == 5                                          //> res61: Boolean = true
+  
+  // Exercise 3.26: expect the following to all return true
+  maximum(Leaf(1)) == 1                           //> res62: Boolean = true
+  maximum(Branch(Leaf(1), Leaf(2))) == 2          //> res63: Boolean = true
+  maximum(
+    Branch(
+      Leaf(1),
+      Branch(
+        Leaf(2),
+        Leaf(3)
+      )
+    )
+  ) == 3                                          //> res64: Boolean = true
+  
+  // vary order, so that the max is not also the last
+  maximum(
+    Branch(
+      Leaf(3),
+      Branch(
+        Leaf(1),
+        Leaf(2)
+      )
+    )
+  ) == 3                                          //> res65: Boolean = true
+  
+  maximum(
+    Branch(
+      Leaf(1),
+      Branch(
+        Leaf(3),
+        Leaf(2)
+      )
+    )
+  ) == 3                                          //> res66: Boolean = true
 }
