@@ -87,87 +87,7 @@ object dataStructuresWorksheet {
   !hasSubsequence(List(1,2,3),List(1,4))          //> res57: Boolean = true
   !hasSubsequence(List(1,2,3), List(2,4))         //> res58: Boolean = true
   
-  // Exercise 3.25: expect the following to all return true...
-  size(Leaf(1)) == 1                              //> res59: Boolean = true
-  size(Branch(Leaf(1), Leaf(2))) == 3             //> res60: Boolean = true
-  size(
-    Branch(
-      Branch(
-        Leaf(1),
-        Leaf(2)
-      ),
-      Leaf(3)
-    )
-  ) == 5                                          //> res61: Boolean = true
-  
-  // Exercise 3.26: expect the following to all return true
-  maximum(Leaf(1)) == 1                           //> res62: Boolean = true
-  maximum(Branch(Leaf(1), Leaf(2))) == 2          //> res63: Boolean = true
-  maximum(
-    Branch(
-      Leaf(1),
-      Branch(
-        Leaf(2),
-        Leaf(3)
-      )
-    )
-  ) == 3                                          //> res64: Boolean = true
-  
-  // vary order, so that the max is not also the last
-  maximum(
-    Branch(
-      Leaf(3),
-      Branch(
-        Leaf(1),
-        Leaf(2)
-      )
-    )
-  ) == 3                                          //> res65: Boolean = true
-  
-  maximum(
-    Branch(
-      Leaf(1),
-      Branch(
-        Leaf(3),
-        Leaf(2)
-      )
-    )
-  ) == 3                                          //> res66: Boolean = true
-  
-  // Do exercise 3.27: expect the following to all return true
-  depth(Leaf(1)) == 1                             //> res67: Boolean = true
-  depth(Branch(Leaf(1), Leaf(2))) == 2            //> res68: Boolean = true
-  
-  depth(
-    Branch(
-      Leaf(1),
-      Branch(
-        Leaf(2),
-        Leaf(3)
-      )
-    )
-  ) == 3                                          //> res69: Boolean = true
-  
-  depth[String](
-    Branch(  // T
-      Leaf("TL"),
-      Branch(  // TR
-        Branch(
-          Leaf("TRL"),
-        	Branch(  // TRR
-        	  Branch(  // TRRL
-        			Leaf("TRRLL"),
-        			Leaf("TRRLR")
-        	  ),
-        	  Leaf("TRRR")
-        	)
-        ),
-        Leaf("TRR")
-      )
-    )
-  ) == 6                                          //> res70: Boolean = true
-  
-  // Exercise 3.28:
+  // Data for the tree exercises:
   val twig = Leaf(1)                              //> twig  : fpinscala.datastructures.Leaf[Int] = Leaf(1)
   val shallowTree = Branch(Leaf(1), Branch(Leaf(2), Leaf(3)))
                                                   //> shallowTree  : fpinscala.datastructures.Branch[Int] = Branch(Leaf(1),Branch
@@ -191,10 +111,64 @@ object dataStructuresWorksheet {
     )                                             //> deepTree  : fpinscala.datastructures.Branch[String] = Branch(Leaf(TL),Branc
                                                   //| h(Branch(Leaf(TRL),Branch(Branch(Leaf(TRRLL),Leaf(TRRLR)),Leaf(TRRR))),Leaf
                                                   //| (TRR)))
-  mapTree(twig)(_ + 0.5)                          //> res71: fpinscala.datastructures.Tree[Double] = Leaf(1.5)
-  mapTree(shallowTree)(_ + 0.5)                   //> res72: fpinscala.datastructures.Tree[Double] = Branch(Leaf(1.5),Branch(Leaf
+  // Exercise 3.25: expect the following to all return true...
+  size(twig) == 1                                 //> res59: Boolean = true
+  size(Branch(Leaf(1), Leaf(2))) == 3             //> res60: Boolean = true
+  size(shallowTree) == 5                          //> res61: Boolean = true
+  
+  // Exercise 3.26: expect the following to all return true
+  maximum(twig) == 1                              //> res62: Boolean = true
+  maximum(Branch(Leaf(1), Leaf(2))) == 2          //> res63: Boolean = true
+  maximum(shallowTree) == 3                       //> res64: Boolean = true
+  
+  // vary order, so that the max is not also the last
+  maximum(
+    Branch(
+      Leaf(3),
+      Branch(
+        Leaf(1),
+        Leaf(2)
+      )
+    )
+  ) == 3                                          //> res65: Boolean = true
+  
+  maximum(
+    Branch(
+      Leaf(1),
+      Branch(
+        Leaf(3),
+        Leaf(2)
+      )
+    )
+  ) == 3                                          //> res66: Boolean = true
+  
+  // Do exercise 3.27: expect the following to all return true
+  depth(twig) == 1                                //> res67: Boolean = true
+  depth(shallowTree) == 3                         //> res68: Boolean = true
+  depth[String](deepTree) == 6                    //> res69: Boolean = true
+  
+  // Exercise 3.28:
+  mapTree(twig)(_ + 0.5)                          //> res70: fpinscala.datastructures.Tree[Double] = Leaf(1.5)
+  mapTree(shallowTree)(_ + 0.5)                   //> res71: fpinscala.datastructures.Tree[Double] = Branch(Leaf(1.5),Branch(Leaf
                                                   //| (2.5),Leaf(3.5)))
-  mapTree(deepTree)(x => s"_${x}_")               //> res73: fpinscala.datastructures.Tree[String] = Branch(Leaf(_TL_),Branch(Bra
+  mapTree(deepTree)(x => s"_${x}_")               //> res72: fpinscala.datastructures.Tree[String] = Branch(Leaf(_TL_),Branch(Bra
+                                                  //| nch(Leaf(_TRL_),Branch(Branch(Leaf(_TRRLL_),Leaf(_TRRLR_)),Leaf(_TRRR_))),L
+                                                  //| eaf(_TRR_)))
+                                                  
+  // Exercise 3.29:
+  sizeViaFold(twig) == 1                          //> res73: Boolean = true
+  sizeViaFold(Branch(Leaf(1), Leaf(2))) == 3      //> res74: Boolean = true
+  sizeViaFold(shallowTree) == 5                   //> res75: Boolean = true
+  maximumViaFold(twig) == 1                       //> res76: Boolean = true
+  maximumViaFold(Branch(Leaf(1), Leaf(2))) == 2   //> res77: Boolean = true
+  maximumViaFold(shallowTree) == 3                //> res78: Boolean = true
+  depthViaFold(twig) == 1                         //> res79: Boolean = true
+  depthViaFold(shallowTree) == 3                  //> res80: Boolean = true
+  depthViaFold(deepTree) == 6                     //> res81: Boolean = true
+  mapViaFold(twig)(_ + 0.5)                       //> res82: fpinscala.datastructures.Tree[Double] = Leaf(1.5)
+  mapViaFold(shallowTree)(_ + 0.5)                //> res83: fpinscala.datastructures.Tree[Double] = Branch(Leaf(1.5),Branch(Leaf
+                                                  //| (2.5),Leaf(3.5)))
+  mapViaFold(deepTree)(x => s"_${x}_")            //> res84: fpinscala.datastructures.Tree[String] = Branch(Leaf(_TL_),Branch(Bra
                                                   //| nch(Leaf(_TRL_),Branch(Branch(Leaf(_TRRLL_),Leaf(_TRRLR_)),Leaf(_TRRR_))),L
                                                   //| eaf(_TRR_)))
 }
