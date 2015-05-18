@@ -114,4 +114,16 @@ object List { // `List` companion object. Contains functions for creating and wo
   // Exercise 3.19: Write a filter function. Use it to remove all odd numbers from a List[Int]:
   def filter[A](l: List[A])(pred: A => Boolean): List[A] = 
     foldRight2(l, Nil: List[A])((h, t) => if (pred(h)) Cons(h, t) else t)
+  
+  // Exercise 3.20: flatMap
+  def flatMap[A, B](l: List[A])(f: A => List[B]): List[B] = concatListOfLists(map(l)(f))
+  
+  def flatMap2[A, B](l: List[A])(f: A => List[B]): List[B] =
+    foldRight(l, Nil: List[B])((h, t) => append(f(h), t))
+  
+  // Exercise 3.21: Use flatMap to implement filter
+  def filterViaFlatMap[A](l: List[A])(pred: A => Boolean): List[A] =
+    flatMap(l)(a => if (pred(a)) List(a) else Nil: List[A])
+    
+  
 }

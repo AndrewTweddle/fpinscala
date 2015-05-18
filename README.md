@@ -23,6 +23,7 @@ The purpose is to do the exercises and compare to the model answers.
 | 3.16        | Why don't underscores work? def addOne(l: List[Int]): List[Int] = foldRight(l, Nil: List[Int])((a,b) => Cons(a + 1, b)) but not def addOne(l: List[Int]): List[Int] = foldRight(l, Nil: List[Int])(Cons(_ + 1, _)) |
 | 3.17        | None |
 | 3.18        | Generalizing map is easy via foldRight. But the model answer also give two other implementations that are safer against stack overflows. |
+| 3.19 - 3.21 | filter, flatMap and filter via flatMap. Note that I returned "Nil: List[A]" where Nil would be sufficient, according to model answer. |
 
 
 ## Tips
@@ -30,6 +31,7 @@ The purpose is to do the exercises and compare to the model answers.
 1. Check pattern matches for redundant case statements i.e. where a more general case statement covers an earlier specific case.
 2. When using foldRight, consider using foldLeft on the reversed list or a mutable local variable for greater efficiency and safety against stack overflows.
    _Edit: Not necessary... The [Scala 2.11.0 implementation](https://github.com/scala/scala/blob/v2.11.0/src/library/scala/collection/immutable/List.scala#L399) does this already_
+3. Nil: List[B] is necessary in fold calls to bind the return type. Just Nil is probably sufficient in the implementation as the type is already bound.
 
 
 ## Thoughts

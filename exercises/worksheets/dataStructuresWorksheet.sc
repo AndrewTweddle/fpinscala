@@ -34,4 +34,13 @@ object dataStructuresWorksheet {
   map(Nil: List[Int])(_ + 1)                      //> res20: fpinscala.datastructures.List[Int] = Nil
   filter(List(1,2,3,4,5))(_ % 2 == 0)             //> res21: fpinscala.datastructures.List[Int] = Cons(2,Cons(4,Nil))
   filter(Nil: List[Int])(_ % 2 == 0)              //> res22: fpinscala.datastructures.List[Int] = Nil
+  flatMap(List(1,2,3))(a => List(a, 3 + a, 6 + a))//> res23: fpinscala.datastructures.List[Int] = Cons(1,Cons(4,Cons(7,Cons(2,Con
+                                                  //| s(5,Cons(8,Cons(3,Cons(6,Cons(9,Nil)))))))))
+  flatMap2(List(1,2,3))(a => List(a, 3 + a, 6 + a))
+                                                  //> res24: fpinscala.datastructures.List[Int] = Cons(1,Cons(4,Cons(7,Cons(2,Con
+                                                  //| s(5,Cons(8,Cons(3,Cons(6,Cons(9,Nil)))))))))
+  flatMap(List(1,2,3))(i => List(i,i))            //> res25: fpinscala.datastructures.List[Int] = Cons(1,Cons(1,Cons(2,Cons(2,Con
+                                                  //| s(3,Cons(3,Nil))))))
+  filterViaFlatMap(List(1,2,3,4,5))(_ % 2 == 0)   //> res26: fpinscala.datastructures.List[Int] = Cons(2,Cons(4,Nil))
+  filterViaFlatMap(Nil: List[Int])(_ % 2 == 0)    //> res27: fpinscala.datastructures.List[Int] = Nil
 }
