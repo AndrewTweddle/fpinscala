@@ -96,6 +96,9 @@ object List { // `List` companion object. Contains functions for creating and wo
   
   // Exercise 3.14: implement append in terms of either foldLeft or foldRight:
   def append2[A](a1: List[A], a2: List[A]): List[A] = foldRight(a1, a2)(Cons(_, _))
+  
+  // Exercise 3.15: Write a function that concatenates a list of lists into a single list
+  def concatListOfLists[A](ll: List[List[A]]) = foldRight(ll, Nil: List[A])(append)
 
   def map[A,B](l: List[A])(f: A => B): List[B] = sys.error("todo")
 }

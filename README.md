@@ -17,6 +17,8 @@ The purpose is to do the exercises and compare to the model answers.
 | 3.9 - 3.12  | None |
 | 3.13        | How to write foldLeft in terms of foldRight and vice versa... reverse(foldLeft(List(1,2,3), Nil:List[Int])((l, a) => Cons(a, l))) == foldRight(List(1,2,3), Nil:List[Int])((a, l) => Cons(a, l)) == Cons(1,Cons(2,Cons(3,Nil))) |
 | 3.14        | None |
+| 3.15        | Implemented concatListOfLists as a foldRight over append. append is linear in the first list, but foldLeft keeps on repeating the first term. So I changed to foldRight to fix this. |
+
 
 ## Tips
 
