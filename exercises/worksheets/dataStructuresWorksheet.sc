@@ -43,6 +43,8 @@ object dataStructuresWorksheet {
                                                   //| s(3,Cons(3,Nil))))))
   filterViaFlatMap(List(1,2,3,4,5))(_ % 2 == 0)   //> res26: fpinscala.datastructures.List[Int] = Cons(2,Cons(4,Nil))
   filterViaFlatMap(Nil: List[Int])(_ % 2 == 0)    //> res27: fpinscala.datastructures.List[Int] = Nil
+  
+  // Exercise 3:22:
   addCorrespondingElements(Nil, Nil)              //> res28: fpinscala.datastructures.List[Int] = Nil
   addCorrespondingElements(List(1,2,3), Nil)      //> res29: fpinscala.datastructures.List[Int] = Nil
   addCorrespondingElements(Nil, List(1,2,3))      //> res30: fpinscala.datastructures.List[Int] = Nil
@@ -53,4 +55,14 @@ object dataStructuresWorksheet {
   addCorrespondingElements(List(1,2,3), List(-1, -2, -3, -4))
                                                   //> res33: fpinscala.datastructures.List[Int] = Cons(0,Cons(0,Cons(0,Nil)))
   addCorrespondingElements(List(1), List(2))      //> res34: fpinscala.datastructures.List[Int] = Cons(3,Nil)
+  
+  // Exercise 3.23:
+  zipWith(Nil: List[Int], Nil: List[Int])(_ + _)  //> res35: fpinscala.datastructures.List[Int] = Nil
+  zipWith(List(1,2,3), Nil: List[Int])(_ + _)     //> res36: fpinscala.datastructures.List[Int] = Nil
+  zipWith(Nil: List[Int], List(1,2,3))(_ + _)     //> res37: fpinscala.datastructures.List[Int] = Nil
+  zipWith(List(1,2,3), List(0, -2, -4))(_ + _)    //> res38: fpinscala.datastructures.List[Int] = Cons(1,Cons(0,Cons(-1,Nil)))
+  zipWith(List(1,2,3,4), List(-1, -2, -3))(_ + _) //> res39: fpinscala.datastructures.List[Int] = Cons(0,Cons(0,Cons(0,Nil)))
+  zipWith(List(1,2,3), List(-1, -2, -3, -4))(_ + _)
+                                                  //> res40: fpinscala.datastructures.List[Int] = Cons(0,Cons(0,Cons(0,Nil)))
+  zipWith(List(1), List(2))(_ + _)                //> res41: fpinscala.datastructures.List[Int] = Cons(3,Nil)
 }
