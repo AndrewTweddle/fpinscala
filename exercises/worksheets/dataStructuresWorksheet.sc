@@ -27,4 +27,7 @@ object dataStructuresWorksheet {
                                                   //| (5,Cons(6,Cons(7,Cons(8,Cons(9,Nil)))))))))
   addOne(List(1,2,3))                             //> res15: fpinscala.datastructures.List[Int] = Cons(2,Cons(3,Cons(4,Nil)))
   addOne(Nil : List[Int])                         //> res16: fpinscala.datastructures.List[Int] = Nil
+  doublesToStrings(List(1.0, 2.5, Math.PI))       //> res17: fpinscala.datastructures.List[String] = Cons(1.0,Cons(2.5,Cons(3.1415
+                                                  //| 92653589793,Nil)))
+  doublesToStrings(Nil: List[Double])             //> res18: fpinscala.datastructures.List[String] = Nil
 }

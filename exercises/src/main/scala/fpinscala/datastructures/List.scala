@@ -103,5 +103,9 @@ object List { // `List` companion object. Contains functions for creating and wo
   // Exercise 3.16: Write a function that transforms a list of integers by adding 1 to each element:
   def addOne(l: List[Int]): List[Int] = foldRight(l, Nil: List[Int])((a,b) => Cons(a + 1, b))
   
+  // Exercise 3.17: Turn each value in a List[Double] into a string using d.ToString
+  def doublesToStrings(l: List[Double]): List[String] = 
+    foldRight(l, Nil: List[String])((h, t) => Cons(h.toString, t))
+  
   def map[A,B](l: List[A])(f: A => B): List[B] = sys.error("todo")
 }
