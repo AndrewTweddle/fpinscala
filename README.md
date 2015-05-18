@@ -1,6 +1,7 @@
 # Purpose of this fork
 
-This is my fork of the original fpinscala/fpinscala repository for the book Functional Programming in Scala. 
+This is my fork of the original 
+[fpinscala/fpinscala](https://github.com/fpinscala/fpinscala)
 The purpose is to do the exercises and compare to the model answers.
 
 # Learnings
