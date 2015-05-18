@@ -90,8 +90,12 @@ object List { // `List` companion object. Contains functions for creating and wo
   def productWithFoldLeft(l: List[Double]): Double = foldLeft(l, 1.0)(_ * _)
   def reverse[A](l: List[A]): List[A] = foldLeft(l, Nil: List[A])((rev,a)=>Cons(a,rev))
   
+  // Exercise 3.13: implement foldLeft and foldRight in terms of the other...
   def foldLeft2[A,B](l: List[A], z: B)(f: (B, A) => B): B = foldRight(reverse(l), z)((a,b)=>f(b, a)) 
   def foldRight2[A,B](l: List[A], z: B)(f: (A, B) => B): B = foldLeft(reverse(l), z)((b,a)=>f(a, b))
+  
+  // Exercise 3.14: implement append in terms of either foldLeft or foldRight:
+  def append2[A](a1: List[A], a2: List[A]): List[A] = foldRight(a1, a2)(Cons(_, _))
 
   def map[A,B](l: List[A])(f: A => B): List[B] = sys.error("todo")
 }

@@ -7,7 +7,7 @@ The purpose is to do the exercises and compare to the model answers.
 
 ## Notes
 
-| Exercise    | Notes  |
+| Exercises   | Notes  |
 | ---         | ---    |
 | 2.1         | I thought of an elegant solution for an efficient tail recursive Fibonacci function. |
 | 3.1 - 3.6   | I had a redundant case statement in exercise 3.5 and 3.6. |
@@ -16,6 +16,7 @@ The purpose is to do the exercises and compare to the model answers.
 | 3.8         | Q: foldRight(List(1,2,3), Nil: List[Int])(Cons(_,_))) = Cons(1,Cons(2,Cons(3,Nil))) = List(1,2,3). What does this say about their relationship? A: foldRight with Cons is the identity function for lists? }
 | 3.9 - 3.12  | None |
 | 3.13        | How to write foldLeft in terms of foldRight and vice versa... reverse(foldLeft(List(1,2,3), Nil:List[Int])((l, a) => Cons(a, l))) == foldRight(List(1,2,3), Nil:List[Int])((a, l) => Cons(a, l)) == Cons(1,Cons(2,Cons(3,Nil))) |
+| 3.14        | None |
 
 ## Tips
 

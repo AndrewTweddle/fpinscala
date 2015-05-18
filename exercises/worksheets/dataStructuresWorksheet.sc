@@ -20,4 +20,6 @@ object dataStructuresWorksheet {
                                                   //> res11: fpinscala.datastructures.List[Int] = Cons(1,Cons(2,Cons(3,Nil)))
   foldLeft2(List(1,2,3), Nil:List[Int])((l, a) => Cons(a, l))
                                                   //> res12: fpinscala.datastructures.List[Int] = Cons(3,Cons(2,Cons(1,Nil)))
+  append2(List(1,2,3), List(4,5,6))               //> res13: fpinscala.datastructures.List[Int] = Cons(1,Cons(2,Cons(3,Cons(4,Cons
+                                                  //| (5,Cons(6,Nil))))))
 }
