@@ -110,4 +110,8 @@ object List { // `List` companion object. Contains functions for creating and wo
   // Exercise 3.18: Write a function map that generalizes modifications 
   // to the contents of a list while preserving its structure:
   def map[A,B](l: List[A])(f: A => B): List[B] = foldRight(l, Nil: List[B])((h, t) => Cons(f(h), t))
+  
+  // Exercise 3.19: Write a filter function. Use it to remove all odd numbers from a List[Int]:
+  def filter[A](l: List[A])(pred: A => Boolean): List[A] = 
+    foldRight2(l, Nil: List[A])((h, t) => if (pred(h)) Cons(h, t) else t)
 }
