@@ -14,7 +14,8 @@ The purpose is to do the exercises and compare to the model answers.
 | 3.6         | Q: Why can't the init function be implemented in constant time like tail? A: There are a long chain of pointers referencing the last item, so removing that last item causes cascading changes all the way up the structure. |
 | 3.7         | Q: Can product, implemented using foldRight, immediately halt the recursion if it encounters a zero? A: Not without remaining type-agnostic. Possibly define a foldRightWhile function taking an extra predicate and outcome if false. |
 | 3.8         | Q: foldRight(List(1,2,3), Nil: List[Int])(Cons(_,_))) = Cons(1,Cons(2,Cons(3,Nil))) = List(1,2,3). What does this say about their relationship? A: foldRight with Cons is the identity function for lists? }
-| 3.9 - 3.11  | |
+| 3.9 - 3.12  | None |
+| 3.13        | How to write foldLeft in terms of foldRight and vice versa... reverse(foldLeft(List(1,2,3), Nil:List[Int])((l, a) => Cons(a, l))) == foldRight(List(1,2,3), Nil:List[Int])((a, l) => Cons(a, l)) == Cons(1,Cons(2,Cons(3,Nil))) |
 
 ## Tips
 
