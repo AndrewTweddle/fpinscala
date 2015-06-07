@@ -30,6 +30,7 @@ The purpose is to do the exercises and compare to the model answers.
 | 3.28        | I don't think I agree with the discussion of ADTs and encapsulation on page 46 of the book. Encapsulation is about allowing the implementation to be changed without code changes cascading to consumers of the interface. Mutability is moot. |
 | 3.29        | 3 parameter lists were used, not 2, so that the g: (B,B) => B could benefit from type inference over the previous f: A=>B. In some cases the types needed to be specified after the function name in the function call, to specify the most base type. |
 | 4.1         | Fine, with a minor tweak: I passed None: Option[B] in the implementation of flatMap. There was no need to specify the type of None. |
+| 4.2         | A bit tricky - remember that map and flatMap can operate on Options as easily as sequences. See tip 5 below for noticing opportunities to use map or flatMap instead. |
 
 
 ## Tips
@@ -39,6 +40,7 @@ The purpose is to do the exercises and compare to the model answers.
    _Edit: Not necessary... The [Scala 2.11.0 implementation](https://github.com/scala/scala/blob/v2.11.0/src/library/scala/collection/immutable/List.scala#L399) does this already_
 3. Nil: List[B] is necessary in fold calls to bind the return type. Just Nil is probably sufficient in the implementation as the type is already bound.
 4. In pattern matches, see if there is a way to make the last clause a "case _ => ...", as this ensures that all scenarios have been covered.
+5. See opportunities for using map or flatMap on an option by looking for pattern match expression where None maps to None, and Some(?) maps to an expression. If the result is a Some(expr) convert to map(expr). If the result can evaluate to Some or None, then use flatMap.
 
 
 ## Thoughts

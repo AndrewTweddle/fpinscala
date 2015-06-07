@@ -44,8 +44,46 @@ object Option {
   def mean(xs: Seq[Double]): Option[Double] =
     if (xs.isEmpty) None
     else Some(xs.sum / xs.length)
-  def variance(xs: Seq[Double]): Option[Double] = sys.error("todo")
-
+  
+  /* Following uses population variance formula to traverse the sequence once only:
+   * 
+   * SUM((x - mean)^2) = SUM(x^2 - 2 * mean * x + mean^2)
+   *                   = SUM(x^2) - 2 * mean * SUM(x) + n * mean^2
+   *                   = SUM(x^2) - 2 * mean * (n * mean) + n * mean^2
+   *                   = SUM(x^2) - 2 * n * mean^2 + n * mean^2
+   *                   = SUM(x^2) - n * mean^2
+   */
+  def variance1(xs: Seq[Double]): Option[Double] = {
+    case class Accumulator(count: Int, sum: Double, squares: Double) {
+      def mean = sum / count
+    }
+    
+    val accumulator = xs.foldLeft(Accumulator(0, 0.0, 0.0))(
+      (acc, x) => acc.copy(acc.count + 1, acc.sum + x, acc.squares + x * x)
+    )
+    
+    accumulator match {
+      case Accumulator(0, _, _) => None
+      case a @ Accumulator(n, sm, ssq) => Some(ssq / n  - a.mean * a.mean)
+    }
+  }
+  
+  def variance2(xs: Seq[Double]): Option[Double] = {
+    val mn = mean(xs)
+    mn match {
+      case None => None
+      case Some(m) => mean(xs.map(x => math.pow(x - m, 2))) 
+    }
+    // Note: When seeing this pattern...
+    // a. If the last expression returns an Option, convert to flatMap.
+    // b. If the last expression returns the type of the sequence, convert to map.
+  }
+  
+  // Implement variance in terms of flatMap, as per the instructions:
+  def variance(xs: Seq[Double]): Option[Double] = mean(xs).flatMap( 
+    m => mean(xs.map(x => math.pow(x - m, 2)))
+  )
+  
   def map2[A,B,C](a: Option[A], b: Option[B])(f: (A, B) => C): Option[C] = sys.error("todo")
 
   def sequence[A](a: List[Option[A]]): Option[List[A]] = sys.error("todo")
