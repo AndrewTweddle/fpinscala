@@ -51,4 +51,22 @@ object errorHandlingWorksheet {
   sequence(List(Some(1),None,Some(3)))            //> res28: fpinscala.errorhandling.Option[List[Int]] = None
   sequence(List[Option[Int]](None,None,None))     //> res29: fpinscala.errorhandling.Option[List[Int]] = None
   sequence(Nil: List[Option[Int]])                //> res30: fpinscala.errorhandling.Option[List[Int]] = Some(List())
+  
+  def isOdd(i: Int): Option[Int] = if (i % 2 == 0) None else Some(i)
+                                                  //> isOdd: (i: Int)fpinscala.errorhandling.Option[Int]
+  val oddsAndEvens = List(1,2,3,4)                //> oddsAndEvens  : List[Int] = List(1, 2, 3, 4)
+  val odds = List(1,3,5)                          //> odds  : List[Int] = List(1, 3, 5)
+  val evens = List(2, 4, 6)                       //> evens  : List[Int] = List(2, 4, 6)
+  val neitherOddsNorEvens = Nil: List[Int]        //> neitherOddsNorEvens  : List[Int] = List()
+  traverse(oddsAndEvens)(isOdd)                   //> res31: fpinscala.errorhandling.Option[List[Int]] = None
+  traverse(odds)(isOdd)                           //> res32: fpinscala.errorhandling.Option[List[Int]] = Some(List(1, 3, 5))
+  traverse(evens)(isOdd)                          //> res33: fpinscala.errorhandling.Option[List[Int]] = None
+  traverse(neitherOddsNorEvens)(isOdd)            //> res34: fpinscala.errorhandling.Option[List[Int]] = Some(List())
+  
+  sequenceViaTraverse(List(Some(1),Some(2),Some(3)))
+                                                  //> res35: fpinscala.errorhandling.Option[List[Int]] = Some(List(1, 2, 3))
+  sequenceViaTraverse(List(Some(1),None,Some(3))) //> res36: fpinscala.errorhandling.Option[List[Int]] = None
+  sequenceViaTraverse(List[Option[Int]](None,None,None))
+                                                  //> res37: fpinscala.errorhandling.Option[List[Int]] = None
+  sequenceViaTraverse(Nil: List[Option[Int]])     //> res38: fpinscala.errorhandling.Option[List[Int]] = Some(List())
 }

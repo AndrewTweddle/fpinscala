@@ -16,24 +16,24 @@ The purpose is to do the exercises and compare to the model answers.
 | 3.6         | Q: Why can't the init function be implemented in constant time like tail? A: There are a long chain of pointers referencing the last item, so removing that last item causes cascading changes all the way up the structure. |
 | 3.7         | Q: Can product, implemented using foldRight, immediately halt the recursion if it encounters a zero? A: Not without remaining type-agnostic. Possibly define a foldRightWhile function taking an extra predicate and outcome if false. |
 | 3.8         | Q: foldRight(List(1,2,3), Nil: List[Int])(Cons(_,_))) = Cons(1,Cons(2,Cons(3,Nil))) = List(1,2,3). What does this say about their relationship? A: foldRight with Cons is the identity function for lists? }
-| 3.9 - 3.12  | None |
+| 3.9 - 3.12  | No comments |
 | 3.13        | How to write foldLeft in terms of foldRight and vice versa... reverse(foldLeft(List(1,2,3), Nil:List[Int])((l, a) => Cons(a, l))) == foldRight(List(1,2,3), Nil:List[Int])((a, l) => Cons(a, l)) == Cons(1,Cons(2,Cons(3,Nil))) |
-| 3.14        | None |
+| 3.14        | No comments |
 | 3.15        | Implemented concatListOfLists as a foldRight over append. append is linear in the first list, but foldLeft keeps on re-generating the first term, so the effect is quadratic. So I changed to foldRight to fix this. |
 | 3.16        | Why don't underscores work? def addOne(l: List[Int]): List[Int] = foldRight(l, Nil: List[Int])((a,b) => Cons(a + 1, b)) but not def addOne(l: List[Int]): List[Int] = foldRight(l, Nil: List[Int])(Cons(_ + 1, _)) |
-| 3.17        | None |
+| 3.17        | No comments |
 | 3.18        | Generalizing map is easy via foldRight. But the model answer also give two other implementations that are safer against stack overflows. |
 | 3.19 - 3.21 | filter, flatMap and filter via flatMap. Note that I returned "Nil: List[A]" where Nil would be sufficient, according to model answer. |
-| 3.22 - 3.23 | None |
+| 3.22 - 3.23 | No comments |
 | 3.24        | My implementation appears fine. But the model answer is slightly better, because it is more obvious that all possible cases have been handled. |
-| 3.25 - 3.27 | None |
+| 3.25 - 3.27 | No comments |
 | 3.28        | I don't think I agree with the discussion of ADTs and encapsulation on page 46 of the book. Encapsulation is about allowing the implementation to be changed without code changes cascading to consumers of the interface. Mutability is moot. |
 | 3.29        | 3 parameter lists were used, not 2, so that the g: (B,B) => B could benefit from type inference over the previous f: A=>B. In some cases the types needed to be specified after the function name in the function call, to specify the most base type. |
 | 4.1         | Fine, with a minor tweak: I passed None: Option[B] in the implementation of flatMap. There was no need to specify the type of None. |
 | 4.2         | A bit tricky - remember that map and flatMap can operate on Options as easily as sequences. See tip 5 below for noticing opportunities to use map or flatMap instead. |
 | 4.3         | Pretty easy, based on using tip 5 for working out when to use map or flatMap |
 | 4.4         | Quite easy, using map2. The model answer uses a recursive call as its first solution, which is a bit different. |
-
+| 4.5         | No comments |
 
 ## Tips
 

@@ -92,5 +92,9 @@ object Option {
     (ax: Option[A], as: Option[List[A]]) => map2(ax, as)(_::_)
   )
   
-  def traverse[A, B](a: List[A])(f: A => Option[B]): Option[List[B]] = sys.error("todo")
+  def traverse[A, B](a: List[A])(f: A => Option[B]): Option[List[B]] = a.foldRight[Option[List[B]]](Some(Nil))(
+    (ax: A, bs: Option[List[B]]) => map2(f(ax), bs)(_ :: _)
+  )
+  
+  def sequenceViaTraverse[A](a: List[Option[A]]): Option[List[A]] = traverse[Option[A], A](a)(x => x) 
 }
