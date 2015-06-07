@@ -46,4 +46,9 @@ object errorHandlingWorksheet {
   map2(none, Some(b))(f)                          //> res24: fpinscala.errorhandling.Option[Int] = None
   map2(Some(a), none)(f)                          //> res25: fpinscala.errorhandling.Option[Int] = None
   map2(none, none)(f)                             //> res26: fpinscala.errorhandling.Option[Int] = None
+  
+  sequence(List(Some(1),Some(2),Some(3)))         //> res27: fpinscala.errorhandling.Option[List[Int]] = Some(List(1, 2, 3))
+  sequence(List(Some(1),None,Some(3)))            //> res28: fpinscala.errorhandling.Option[List[Int]] = None
+  sequence(List[Option[Int]](None,None,None))     //> res29: fpinscala.errorhandling.Option[List[Int]] = None
+  sequence(Nil: List[Option[Int]])                //> res30: fpinscala.errorhandling.Option[List[Int]] = Some(List())
 }

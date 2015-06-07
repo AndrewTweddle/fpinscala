@@ -32,6 +32,7 @@ The purpose is to do the exercises and compare to the model answers.
 | 4.1         | Fine, with a minor tweak: I passed None: Option[B] in the implementation of flatMap. There was no need to specify the type of None. |
 | 4.2         | A bit tricky - remember that map and flatMap can operate on Options as easily as sequences. See tip 5 below for noticing opportunities to use map or flatMap instead. |
 | 4.3         | Pretty easy, based on using tip 5 for working out when to use map or flatMap |
+| 4.4         | Quite easy, using map2. The model answer uses a recursive call as its first solution, which is a bit different. |
 
 
 ## Tips
