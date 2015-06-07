@@ -31,6 +31,7 @@ The purpose is to do the exercises and compare to the model answers.
 | 3.29        | 3 parameter lists were used, not 2, so that the g: (B,B) => B could benefit from type inference over the previous f: A=>B. In some cases the types needed to be specified after the function name in the function call, to specify the most base type. |
 | 4.1         | Fine, with a minor tweak: I passed None: Option[B] in the implementation of flatMap. There was no need to specify the type of None. |
 | 4.2         | A bit tricky - remember that map and flatMap can operate on Options as easily as sequences. See tip 5 below for noticing opportunities to use map or flatMap instead. |
+| 4.3         | Pretty easy, based on using tip 5 for working out when to use map or flatMap |
 
 
 ## Tips

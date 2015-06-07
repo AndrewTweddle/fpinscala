@@ -37,4 +37,13 @@ object errorHandlingWorksheet {
   variance2(Nil: List[Double])                    //> res20: fpinscala.errorhandling.Option[Double] = None
   variance(xs)                                    //> res21: fpinscala.errorhandling.Option[Double] = Some(8.666666666666666)
   variance(Nil: List[Double])                     //> res22: fpinscala.errorhandling.Option[Double] = None
+  
+  val a = 4                                       //> a  : Int = 4
+  val b = 10                                      //> b  : Int = 10
+  val none: Option[Int] = None                    //> none  : fpinscala.errorhandling.Option[Int] = None
+  def f(a: Int, b: Int): Int = a * a - b          //> f: (a: Int, b: Int)Int
+  map2(Some(a), Some(b))(f)                       //> res23: fpinscala.errorhandling.Option[Int] = Some(6)
+  map2(none, Some(b))(f)                          //> res24: fpinscala.errorhandling.Option[Int] = None
+  map2(Some(a), none)(f)                          //> res25: fpinscala.errorhandling.Option[Int] = None
+  map2(none, none)(f)                             //> res26: fpinscala.errorhandling.Option[Int] = None
 }
