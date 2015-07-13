@@ -34,6 +34,7 @@ The purpose is to do the exercises and compare to the model answers.
 | 4.3         | Pretty easy, based on using tip 5 for working out when to use map or flatMap |
 | 4.4         | Quite easy, using map2. The model answer uses a recursive call as its first solution, which is a bit different. |
 | 4.5         | No comments |
+| 4.6         | No comments |
 
 ## Tips
 
@@ -43,6 +44,7 @@ The purpose is to do the exercises and compare to the model answers.
 3. Nil: List[B] is necessary in fold calls to bind the return type. Just Nil is probably sufficient in the implementation as the type is already bound.
 4. In pattern matches, see if there is a way to make the last clause a "case _ => ...", as this ensures that all scenarios have been covered.
 5. See opportunities for using map or flatMap on an option by looking for pattern match expression where None maps to None, and Some(?) maps to an expression. If the result is a Some(expr) convert to map(expr). If the result can evaluate to Some or None, then use flatMap.
+6. In exercise 4.6, Left[E] and Right[A] only implement one type parameter, so one must typecast to Either[E,A] to get correct signature for map, flatMap, etc.
 
 
 ## Thoughts
