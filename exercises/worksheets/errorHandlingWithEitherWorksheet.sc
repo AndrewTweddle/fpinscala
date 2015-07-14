@@ -25,4 +25,24 @@ object errorHandlingWithEitherWorksheet {
   left.map2(Right(b))(f) == left                  //> res11: Boolean = true
   right.map2(left)(f) == left                     //> res12: Boolean = true
   left.map2(left)(f) == left                      //> res13: Boolean = true
+  
+  sequence(List(Right(1),Right(2),Right(3)))      //> res14: fpinscala.errorhandling.Either[Nothing,List[Int]] = Right(List(1, 2, 
+                                                  //| 3))
+  sequence(List(Right(1),left,Right(3)))          //> res15: fpinscala.errorhandling.Either[String,List[Int]] = Left(error)
+  sequence(List[Either[String, Int]](left,left,left))
+                                                  //> res16: fpinscala.errorhandling.Either[String,List[Int]] = Left(error)
+  sequence(Nil: List[Either[String, Int]])        //> res17: fpinscala.errorhandling.Either[String,List[Int]] = Right(List())
+   
+  def isOdd(i: Int): Either[String, Int] = if (i % 2 == 0) left else Right(i)
+                                                  //> isOdd: (i: Int)fpinscala.errorhandling.Either[String,Int]
+  val oddsAndEvens = List(1,2,3,4)                //> oddsAndEvens  : List[Int] = List(1, 2, 3, 4)
+  val odds = List(1,3,5)                          //> odds  : List[Int] = List(1, 3, 5)
+  val evens = List(2, 4, 6)                       //> evens  : List[Int] = List(2, 4, 6)
+  val neitherOddsNorEvens = Nil: List[Int]        //> neitherOddsNorEvens  : List[Int] = List()
+  traverse(oddsAndEvens)(isOdd)                   //> res18: fpinscala.errorhandling.Either[String,List[Int]] = Left(error)
+  traverse(odds)(isOdd)                           //> res19: fpinscala.errorhandling.Either[String,List[Int]] = Right(List(1, 3, 
+                                                  //| 5))
+  traverse(evens)(isOdd)                          //> res20: fpinscala.errorhandling.Either[String,List[Int]] = Left(error)
+  traverse(neitherOddsNorEvens)(isOdd)            //> res21: fpinscala.errorhandling.Either[String,List[Int]] = Right(List())
+  
 }
