@@ -38,7 +38,7 @@ The purpose is to do the exercises and compare to the model answers.
 | 4.7         | Either.traverse() and sequence(). A bit tricky. I didn't see that map2 could be used to implement traverse. |
 | 4.8         | Qu: map2 can only report error. What change is required to report multiple errors. Ans: Different data type to store multiple errors; different logic to not short circuit the error path; perhaps a way to distinguish sequential from independent calculation steps; perhaps make short circuiting optional. |
 | 5.1         | Straightforward. But the model answer points out that it's not a tail recursive solution. Also a case _ => would have been more succinct. |
-| 5.2         | Easy, unless you try to make drop lazy as well. I couldn't see how to do this, and the model answer doesn't try. I suspect it may not be possible, because one must call t() to know whether to return a Cons or Empty - a stream can't *lazily* decide whether to be an instance of Cons or Empty... Unless you added a 3rd choice: case class ConsOrEmpty[+A](decide: () => Stream[A]) extends Stream[A] |
+| 5.2         | Easy, unless you try to make drop lazy as well. I couldn't see how to do this, and the model answer doesn't try. I suspect it may not be possible, because one must call t() to know whether to return a Cons or Empty - a stream can't *lazily* decide whether to be an instance of Cons or Empty... Unless you added a 3rd choice: `case class ConsOrEmpty[+A](decide: () => Stream[A]) extends Stream[A]` |
 
 ## Tips
 
