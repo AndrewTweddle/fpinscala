@@ -22,9 +22,19 @@ trait Stream[+A] {
     case Empty => None
     case Cons(h, t) => if (f(h())) Some(h()) else t().find(f)
   }
-  def take(n: Int): Stream[A] = sys.error("todo")
+  
+  def take(n: Int): Stream[A] = this match {
+    case Cons(h, t) if n <= 0 => Empty
+    case Cons(h, t) => Cons(h, () => t().take(n-1))
+    case _ => Empty
+  }
 
-  def drop(n: Int): Stream[A] = sys.error("todo")
+  def drop(n: Int): Stream[A] = this match {
+    case _ if n < 0 => error("It isn't possible to drop a negative number of items from a stream")
+    case _ if n == 0 => this
+    case Cons(_, t) => t().drop(n-1)
+    case _ => Empty
+  }
 
   def takeWhile(p: A => Boolean): Stream[A] = sys.error("todo")
 
