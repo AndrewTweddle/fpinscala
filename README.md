@@ -37,6 +37,7 @@ The purpose is to do the exercises and compare to the model answers.
 | 4.6         | A bit tricky |
 | 4.7         | Either.traverse() and sequence(). A bit tricky. I didn't see that map2 could be used to implement traverse. |
 | 4.8         | Qu: map2 can only report error. What change is required to report multiple errors. Ans: Different data type to store multiple errors; different logic to not short circuit the error path; perhaps a way to distinguish sequential from independent calculation steps; perhaps make short circuiting optional. |
+| 5.1         | Straightforward. But the model answer points out that it's not a tail recursive solution. Also a case _ => would have been more succinct. |
 
 ## Tips
 
@@ -48,6 +49,8 @@ The purpose is to do the exercises and compare to the model answers.
 5. See opportunities for using map or flatMap on an option by looking for pattern match expression where None maps to None, and Some(?) maps to an expression. If the result is a Some(expr) convert to map(expr). If the result can evaluate to Some or None, then use flatMap.
 6. In exercise 4.6, Left[E] and Right[A] only implement one type parameter, so one must typecast to Either[E,A] to get correct signature for map, flatMap, etc.
 7. In 4.7, "(_)" didn't work for an identity map. I thought it would be necessary to specify the type of the parameter. But "(x => x)" would have worked.
+8. Always consider whether a solution could cause a stack overflow. If so, look for a tail recursive solution.
+9. Consider whether using a non-shared mutable variable (i.e. internal to the function) can improve performance. See Stream.toListFast in the model answer.
 
 
 ## Thoughts
