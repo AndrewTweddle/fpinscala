@@ -37,7 +37,6 @@ The purpose is to do the exercises and compare to the model answers.
 | 4.6         | A bit tricky |
 | 4.7         | Either.traverse() and sequence(). A bit tricky. I didn't see that map2 could be used to implement traverse. |
 
-
 ## Tips
 
 1. Check pattern matches for redundant case statements i.e. where a more general case statement covers an earlier specific case.
@@ -54,7 +53,12 @@ The purpose is to do the exercises and compare to the model answers.
 
 1. It sucks that Scala doesn't have automatic currying and type inference over all parameters. Multiple parameter lists is a clever but kludgy idea.
 2. I don't have a mental model for when (_) will work as an identity map, and when (x => x) is required (see exercise 4.7). TODO: Update when I understand.
-
+3. The Either data type feels very wrong to me (the names, not the concept):
+  a. It looks symmetrical, but isn't. The left side short-circuits but the right side doesn't.
+  b. The code misses an opportunity to be self-documenting. 
+     The names don't reveal the intention, which is that one side should represent success and the other failure.
+     As a result additional explanation is needed to explain that you should remember that "right" can also mean "correct".
+  c. Even if you argue that general purpose names don't limit the use, there should still be a clue in the names that one side will short-circuit and the other not e.g. shortened and normal (short would be better, but Short is a data type).
 
 # Original readme file contents
 
