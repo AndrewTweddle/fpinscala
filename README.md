@@ -36,6 +36,7 @@ The purpose is to do the exercises and compare to the model answers.
 | 4.5         | No comments |
 | 4.6         | A bit tricky |
 | 4.7         | Either.traverse() and sequence(). A bit tricky. I didn't see that map2 could be used to implement traverse. |
+| 4.8         | Qu: map2 can only report error. What change is required to report multiple errors. Ans: Different data type to store multiple errors; different logic to not short circuit the error path; perhaps a way to distinguish sequential from independent calculation steps; perhaps make short circuiting optional. |
 
 ## Tips
 
