@@ -37,6 +37,7 @@ The purpose is to do the exercises and compare to the model answers.
 | 4.6         | A bit tricky |
 | 4.7         | Either.traverse() and sequence(). A bit tricky. I didn't see that map2 could be used to implement traverse. |
 
+
 ## Tips
 
 1. Check pattern matches for redundant case statements i.e. where a more general case statement covers an earlier specific case.
@@ -52,6 +53,7 @@ The purpose is to do the exercises and compare to the model answers.
 ## Thoughts
 
 1. It sucks that Scala doesn't have automatic currying and type inference over all parameters. Multiple parameter lists is a clever but kludgy idea.
+2. I don't have a mental model for when (_) will work as an identity map, and when (x => x) is required (see exercise 4.7). TODO: Update when I understand.
 
 
 # Original readme file contents
