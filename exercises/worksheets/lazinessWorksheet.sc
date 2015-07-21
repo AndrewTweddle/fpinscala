@@ -2,7 +2,8 @@ import fpinscala.laziness._
 import fpinscala.laziness.Stream._
 
 object lazinessWorksheet {
-  Empty.toList.isEmpty                            //> res0: Boolean = true
+  val empty: Stream[Int] = Empty                  //> empty  : fpinscala.laziness.Stream[Int] = Empty
+  empty.toList.isEmpty                            //> res0: Boolean = true
   val streamFrom1To3 = Cons[Int](() => 1, () => Cons(() => 2, () => Cons(() => 3, () => Empty)))
                                                   //> streamFrom1To3  : fpinscala.laziness.Cons[Int] = Cons(<function0>,<function0
                                                   //| >)
@@ -38,10 +39,11 @@ object lazinessWorksheet {
     println(s"Checking if $i is odd")
     i % 2 != 0
   }                                               //> isOdd: (i: Int)Boolean
+  empty.takeWhile(isOdd).toList.isEmpty           //> res23: Boolean = true
   streamFrom1To3.takeWhile(isOdd).toList == List(1)
                                                   //> Checking if 1 is odd
                                                   //| Checking if 2 is odd
-                                                  //| res23: Boolean = true
+                                                  //| res24: Boolean = true
   
   def isLessThanFour(i: Int) = {
     println(s"Checking if $i is less than 4")
@@ -51,24 +53,44 @@ object lazinessWorksheet {
                                                   //> Checking if 1 is less than 4
                                                   //| Checking if 2 is less than 4
                                                   //| Checking if 3 is less than 4
-                                                  //| res24: Boolean = true
+                                                  //| res25: Boolean = true
   
   Stream(1, 2, 3, 4).takeWhile(isLessThanFour).toList == List(1, 2, 3)
                                                   //> Checking if 1 is less than 4
                                                   //| Checking if 2 is less than 4
                                                   //| Checking if 3 is less than 4
                                                   //| Checking if 4 is less than 4
-                                                  //| res25: Boolean = true
+                                                  //| res26: Boolean = true
   !streamFrom1To3.forAll(isOdd)                   //> Checking if 1 is odd
                                                   //| Checking if 2 is odd
-                                                  //| res26: Boolean = true
+                                                  //| res27: Boolean = true
   streamFrom1To3.forAll(isLessThanFour)           //> Checking if 1 is less than 4
                                                   //| Checking if 2 is less than 4
                                                   //| Checking if 3 is less than 4
-                                                  //| res27: Boolean = true
+                                                  //| res28: Boolean = true
   Stream(1, 2, 3, 4).forAll(isLessThanFour)       //> Checking if 1 is less than 4
                                                   //| Checking if 2 is less than 4
                                                   //| Checking if 3 is less than 4
                                                   //| Checking if 4 is less than 4
-                                                  //| res28: Boolean = false
+                                                  //| res29: Boolean = false
+  empty.takeWhileUsingFoldRight(isOdd).toList.isEmpty
+                                                  //> res30: Boolean = true
+  streamFrom1To3.takeWhileUsingFoldRight(isOdd).toList == List(1)
+                                                  //> Checking if 1 is odd
+                                                  //| Checking if 2 is odd
+                                                  //| res31: Boolean = true
+  
+  streamFrom1To3.takeWhileUsingFoldRight(isLessThanFour).toList == List(1, 2, 3)
+                                                  //> Checking if 1 is less than 4
+                                                  //| Checking if 2 is less than 4
+                                                  //| Checking if 3 is less than 4
+                                                  //| res32: Boolean = true
+  
+  Stream(1, 2, 3, 4).takeWhileUsingFoldRight(isLessThanFour).toList == List(1, 2, 3)
+                                                  //> Checking if 1 is less than 4
+                                                  //| Checking if 2 is less than 4
+                                                  //| Checking if 3 is less than 4
+                                                  //| Checking if 4 is less than 4
+                                                  //| res33: Boolean = true
+                                                  
 }
