@@ -2,8 +2,8 @@ import fpinscala.laziness._
 import fpinscala.laziness.Stream._
 
 object lazinessWorksheet {
-  val empty: Stream[Int] = Empty                  //> empty  : fpinscala.laziness.Stream[Int] = Empty
-  empty.toList.isEmpty                            //> res0: Boolean = true
+  val emptyStream: Stream[Int] = Empty            //> emptyStream  : fpinscala.laziness.Stream[Int] = Empty
+  emptyStream.toList.isEmpty                      //> res0: Boolean = true
   val streamFrom1To3 = Cons[Int](() => 1, () => Cons(() => 2, () => Cons(() => 3, () => Empty)))
                                                   //> streamFrom1To3  : fpinscala.laziness.Cons[Int] = Cons(<function0>,<function0
                                                   //| >)
@@ -39,7 +39,7 @@ object lazinessWorksheet {
     println(s"Checking if $i is odd")
     i % 2 != 0
   }                                               //> isOdd: (i: Int)Boolean
-  empty.takeWhile(isOdd).toList.isEmpty           //> res23: Boolean = true
+  emptyStream.takeWhile(isOdd).toList.isEmpty     //> res23: Boolean = true
   streamFrom1To3.takeWhile(isOdd).toList == List(1)
                                                   //> Checking if 1 is odd
                                                   //| Checking if 2 is odd
@@ -73,7 +73,7 @@ object lazinessWorksheet {
                                                   //| Checking if 3 is less than 4
                                                   //| Checking if 4 is less than 4
                                                   //| res29: Boolean = false
-  empty.takeWhileUsingFoldRight(isOdd).toList.isEmpty
+  emptyStream.takeWhileUsingFoldRight(isOdd).toList.isEmpty
                                                   //> res30: Boolean = true
   streamFrom1To3.takeWhileUsingFoldRight(isOdd).toList == List(1)
                                                   //> Checking if 1 is odd
@@ -92,5 +92,6 @@ object lazinessWorksheet {
                                                   //| Checking if 3 is less than 4
                                                   //| Checking if 4 is less than 4
                                                   //| res33: Boolean = true
-                                                  
+  empty.headOption == None                        //> res34: Boolean = true
+  streamFrom1To3.headOption == Some(1)            //> res35: Boolean = true
 }

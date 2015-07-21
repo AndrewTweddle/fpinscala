@@ -54,7 +54,7 @@ trait Stream[+A] {
     (a, b) => if (p(a)) cons(a, b) else Empty
   )
 
-  def headOption: Option[A] = sys.error("todo")
+  def headOption: Option[A] = foldRight[Option[A]](None)((a,b) => Some(a))
 
   // 5.7 map, filter, append, flatmap using foldRight. Part of the exercise is
   // writing your own function signatures.

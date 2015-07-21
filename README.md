@@ -42,6 +42,7 @@ The purpose is to do the exercises and compare to the model answers.
 | 5.3         | My solution is more verbose than the model answer. Although I avoid calculating head twice (so don't assume that the head function is referentially transparent). |
 | 5.4         | Stream.forAll() was very easy using the provided foldRight() |
 | 5.5         | Stream.takeWhileUsingFoldRight() - a little tricky getting the types right (e.g. knowing when to use a value or a HOF that returns the value) |
+| 5.6         | Stream.headOption was surprisingly easy using foldRight, but it feels like cheating as you ignore the => B parameter in the 2nd parameter to foldRight! |
 
 ## Tips
 
