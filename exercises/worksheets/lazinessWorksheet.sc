@@ -33,4 +33,30 @@ object lazinessWorksheet {
   streamFrom1To3.drop(2).toList == List(3)        //> res20: Boolean = true
   streamFrom1To3.drop(3).toList == List.empty     //> res21: Boolean = true
   streamFrom1To3.drop(4).toList == List.empty     //> res22: Boolean = true
+  
+  def isOdd(i: Int) = {
+    println(s"Checking if $i is odd")
+    i % 2 != 0
+  }                                               //> isOdd: (i: Int)Boolean
+  streamFrom1To3.takeWhile(isOdd).toList == List(1)
+                                                  //> Checking if 1 is odd
+                                                  //| Checking if 2 is odd
+                                                  //| res23: Boolean = true
+  
+  def isLessThanFour(i: Int) = {
+    println(s"Checking if $i is less than 4")
+    i < 4
+  }                                               //> isLessThanFour: (i: Int)Boolean
+  streamFrom1To3.takeWhile(isLessThanFour).toList == List(1, 2, 3)
+                                                  //> Checking if 1 is less than 4
+                                                  //| Checking if 2 is less than 4
+                                                  //| Checking if 3 is less than 4
+                                                  //| res24: Boolean = true
+  
+  Stream(1, 2, 3, 4).takeWhile(isLessThanFour).toList == List(1, 2, 3)
+                                                  //> Checking if 1 is less than 4
+                                                  //| Checking if 2 is less than 4
+                                                  //| Checking if 3 is less than 4
+                                                  //| Checking if 4 is less than 4
+                                                  //| res25: Boolean = true
 }
