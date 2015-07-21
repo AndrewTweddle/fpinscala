@@ -58,6 +58,7 @@ The purpose is to do the exercises and compare to the model answers.
 9. Consider whether using a non-shared mutable variable (i.e. internal to the function) can improve performance. See Stream.toListFast in the model answer.
 10. Make a method final to allow it to be made tail recursive. See Stream.drop in the model answer.
 11. When two case clauses have the same right hand side, consider whether the matches can be re-ordered to collapse them into one. See the model answer for Stream.drop() which does this.
+12. If ignoring a parameter in a lambda expression, don't give it a name. Use _ to make it obvious that it is being ignored (see the model answer for Stream.headOption).
 
 ## Thoughts
 
