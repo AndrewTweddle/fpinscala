@@ -59,4 +59,16 @@ object lazinessWorksheet {
                                                   //| Checking if 3 is less than 4
                                                   //| Checking if 4 is less than 4
                                                   //| res25: Boolean = true
+  !streamFrom1To3.forAll(isOdd)                   //> Checking if 1 is odd
+                                                  //| Checking if 2 is odd
+                                                  //| res26: Boolean = true
+  streamFrom1To3.forAll(isLessThanFour)           //> Checking if 1 is less than 4
+                                                  //| Checking if 2 is less than 4
+                                                  //| Checking if 3 is less than 4
+                                                  //| res27: Boolean = true
+  Stream(1, 2, 3, 4).forAll(isLessThanFour)       //> Checking if 1 is less than 4
+                                                  //| Checking if 2 is less than 4
+                                                  //| Checking if 3 is less than 4
+                                                  //| Checking if 4 is less than 4
+                                                  //| res28: Boolean = false
 }
