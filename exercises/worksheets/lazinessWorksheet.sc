@@ -178,4 +178,8 @@ object lazinessWorksheet {
   // Test from():
   from(15).take(3).toList == List(15, 16, 17)     //> res48: Boolean = true
   from(15).take(0).toList == List()               //> res49: Boolean = true
+  
+  // Test fibs():
+  fibs().take(8).toList == List(0, 1, 1, 2, 3, 5, 8, 13)
+                                                  //> res50: Boolean = true
 }

@@ -94,6 +94,11 @@ object Stream {
   def constant[A](a: A): Stream[A] = cons(a, constant(a))
   
   def from(n: Int): Stream[Int] = cons(n, from(n+1))
+  
+  def fibs(): Stream[Int] = {
+    def nextFibs(prev: Int, curr: Int): Stream[Int] = cons(curr, nextFibs(curr, prev + curr))
+    nextFibs(1, 0)  // Passing 1 as prev is a hack to kick-start the 1's
+  } 
 
   def unfold[A, S](z: S)(f: S => Option[(A, S)]): Stream[A] = sys.error("todo")
 }
