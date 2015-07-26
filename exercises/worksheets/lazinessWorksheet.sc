@@ -170,4 +170,12 @@ object lazinessWorksheet {
   def clearStream(i: Int) = empty[Int]            //> clearStream: (i: Int)fpinscala.laziness.Stream[Int]
   powerStream.flatMap(clearStream).toList == List[Int]()
                                                   //> res45: Boolean = true
+                                                  
+  // Test constant:
+  constant(10).take(3).toList == List(10, 10, 10) //> res46: Boolean = true
+  constant(10).take(0).toList == List()           //> res47: Boolean = true
+  
+  // Test from():
+  from(15).take(3).toList == List(15, 16, 17)     //> res48: Boolean = true
+  from(15).take(0).toList == List()               //> res49: Boolean = true
 }

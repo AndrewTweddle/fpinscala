@@ -44,6 +44,8 @@ The purpose is to do the exercises and compare to the model answers.
 | 5.5         | Stream.takeWhileUsingFoldRight() - a little tricky getting the types right (e.g. knowing when to use a value or a HOF that returns the value) |
 | 5.6         | Stream.headOption was surprisingly easy using foldRight, but it feels like cheating as you ignore the => B parameter in the 2nd parameter to foldRight! |
 | 5.7         | Easy, except for getting the function signature right to support covariance. I'm concerned that the first stream element gets processed eagerly by foldRight, not lazily. |
+| 5.8         | Stream.constant(n): Easy, but the model answer gives a more efficient implementation using a lazy val |
+| 5.9         | Stream.from(n): straightforward |
 
 ## Tips
 
