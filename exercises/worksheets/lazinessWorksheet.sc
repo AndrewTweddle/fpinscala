@@ -94,4 +94,80 @@ object lazinessWorksheet {
                                                   //| res33: Boolean = true
   empty.headOption == None                        //> res34: Boolean = true
   streamFrom1To3.headOption == Some(1)            //> res35: Boolean = true
+
+  // Test map:
+  def doubleIt(i: Int) = {
+    println(s"doubling $i")
+    2 * i
+  }                                               //> doubleIt: (i: Int)Int
+  val evensStream1 = streamFrom1To3.map(doubleIt) //> evensStream1  : fpinscala.laziness.Stream[Int] = Cons(<function0>,<function
+                                                  //| 0>)
+  evensStream1.toList == List(2, 4, 6)            //> doubling 1
+                                                  //| doubling 2
+                                                  //| doubling 3
+                                                  //| res36: Boolean = true
+  // Test filter:
+  val oddsStream = Stream(1,2,3,4,5).filter(isOdd)//> Checking if 1 is odd
+                                                  //| oddsStream  : fpinscala.laziness.Stream[Int] = Cons(<function0>,<function0>
+                                                  //| )
+  oddsStream.toList == List(1, 3, 5)              //> Checking if 2 is odd
+                                                  //| Checking if 3 is odd
+                                                  //| Checking if 4 is odd
+                                                  //| Checking if 5 is odd
+                                                  //| res37: Boolean = true
+  val evensThatAreOdd = evensStream1.filter(isOdd)//> Checking if 2 is odd
+                                                  //| Checking if 4 is odd
+                                                  //| Checking if 6 is odd
+                                                  //| evensThatAreOdd  : fpinscala.laziness.Stream[Int] = Empty
+  evensThatAreOdd.toList == List[Int]()           //> res38: Boolean = true
+  val emptyThatIsOdd = emptyStream.filter(isOdd)  //> emptyThatIsOdd  : fpinscala.laziness.Stream[Int] = Empty
+  emptyThatIsOdd.toList == List[Int]()            //> res39: Boolean = true
+  
+  // Test append:
+  def makeOdd(i: Int) = {
+    println(s"making odd number $i")
+    2 * i - 1
+  }                                               //> makeOdd: (i: Int)Int
+  val oddStream = streamFrom1To3.map(makeOdd)     //> oddStream  : fpinscala.laziness.Stream[Int] = Cons(<function0>,<function0>)
+                                                  //| 
+  val evensStream2 = streamFrom1To3.map(doubleIt) //> evensStream2  : fpinscala.laziness.Stream[Int] = Cons(<function0>,<function
+                                                  //| 0>)
+  val oddsThenEvens = oddStream.append(evensStream2)
+                                                  //> making odd number 1
+                                                  //| oddsThenEvens  : fpinscala.laziness.Stream[Int] = Cons(<function0>,<functio
+                                                  //| n0>)
+  oddsThenEvens.toList == List(1, 3, 5, 2, 4, 6)  //> making odd number 2
+                                                  //| making odd number 3
+                                                  //| doubling 1
+                                                  //| doubling 2
+                                                  //| doubling 3
+                                                  //| res40: Boolean = true
+  val evensStream3 = streamFrom1To3.map(doubleIt) //> evensStream3  : fpinscala.laziness.Stream[Int] = Cons(<function0>,<function
+                                                  //| 0>)
+  val emptyThenEvens = emptyStream.append(evensStream3)
+                                                  //> emptyThenEvens  : fpinscala.laziness.Stream[Int] = Cons(<function0>,<functi
+                                                  //| on0>)
+  emptyThenEvens.toList == List(2, 4, 6)          //> doubling 1
+                                                  //| doubling 2
+                                                  //| doubling 3
+                                                  //| res41: Boolean = true
+  streamFrom1To3.append(emptyStream).toList == List(1, 2, 3)
+                                                  //> res42: Boolean = true
+  // Test flatMap:
+  def makePowerStream(i: Int) = {
+    println(s"Raising $i to the first 3 powers")
+    Stream(i, i * i, i * i * i)
+  }                                               //> makePowerStream: (i: Int)fpinscala.laziness.Stream[Int]
+  val powerStream = streamFrom1To3.flatMap(makePowerStream)
+                                                  //> Raising 1 to the first 3 powers
+                                                  //| powerStream  : fpinscala.laziness.Stream[Int] = Cons(<function0>,<function0
+                                                  //| >)
+  powerStream.toList == List(1,1,1,2,4,8,3,9,27)  //> Raising 2 to the first 3 powers
+                                                  //| Raising 3 to the first 3 powers
+                                                  //| res43: Boolean = true
+  emptyStream.flatMap(makePowerStream).toList == List[Int]()
+                                                  //> res44: Boolean = true
+  def clearStream(i: Int) = empty[Int]            //> clearStream: (i: Int)fpinscala.laziness.Stream[Int]
+  powerStream.flatMap(clearStream).toList == List[Int]()
+                                                  //> res45: Boolean = true
 }
