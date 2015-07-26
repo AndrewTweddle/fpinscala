@@ -98,6 +98,8 @@ object Stream {
   def fibs(): Stream[Int] = {
     def nextFibs(prev: Int, curr: Int): Stream[Int] = cons(curr, nextFibs(curr, prev + curr))
     nextFibs(1, 0)  // Passing 1 as prev is a hack to kick-start the 1's
+    
+    // blah... I could have written this more cleanly as nextFibs(curr, next) to avoid the hack
   } 
 
   def unfold[A, S](z: S)(f: S => Option[(A, S)]): Stream[A] = sys.error("todo")
