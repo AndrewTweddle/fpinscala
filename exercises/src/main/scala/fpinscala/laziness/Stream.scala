@@ -102,5 +102,8 @@ object Stream {
     // blah... I could have written this more cleanly as nextFibs(curr, next) to avoid the hack
   } 
 
-  def unfold[A, S](z: S)(f: S => Option[(A, S)]): Stream[A] = sys.error("todo")
+  def unfold[A, S](z: S)(f: S => Option[(A, S)]): Stream[A] = f(z) match {
+    case None => Empty
+    case Some((a, s)) => cons(a, unfold(s)(f))
+  }
 }

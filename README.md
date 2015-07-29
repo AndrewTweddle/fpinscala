@@ -47,6 +47,7 @@ The purpose is to do the exercises and compare to the model answers.
 | 5.8         | Stream.constant(n): Easy, but the model answer gives a more efficient implementation using a lazy val |
 | 5.9         | Stream.from(n): straightforward |
 | 5.10        | fibs(): I made it more cumbersome than necessary by using nextFibs(prev, curr): Stream[Int] instead of nextFibs(curr, next) |
+| 5.11        | Stream.unfold(): No comment. |
 
 ## Tips
 
