@@ -182,4 +182,21 @@ object lazinessWorksheet {
   // Test fibs():
   fibs().take(8).toList == List(0, 1, 1, 2, 3, 5, 8, 13)
                                                   //> res50: Boolean = true
+  // Test fibsUsingUnfold():
+  fibsUsingUnfold().take(8).toList == List(0, 1, 1, 2, 3, 5, 8, 13)
+                                                  //> res51: Boolean = true
+  // Test fromUsingUnfold():
+  fromUsingUnfold(15).take(3).toList == List(15, 16, 17)
+                                                  //> res52: Boolean = true
+  fromUsingUnfold(15).take(0).toList == List()    //> res53: Boolean = true
+  
+  // Test constantUsingUnfold:
+  constantUsingUnfold(10).take(3).toList == List(10, 10, 10)
+                                                  //> res54: Boolean = true
+  constantUsingUnfold(10).take(0).toList == List()//> res55: Boolean = true
+  
+  // Test onesUsingUnfold:
+  onesUsingUnfold().take(3).toList == List(1, 1, 1)
+                                                  //> res56: Boolean = true
+  onesUsingUnfold().take(0).toList == List()      //> res57: Boolean = true
 }

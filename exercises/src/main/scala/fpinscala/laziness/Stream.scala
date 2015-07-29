@@ -106,4 +106,14 @@ object Stream {
     case None => Empty
     case Some((a, s)) => cons(a, unfold(s)(f))
   }
+  
+  def fibsUsingUnfold(): Stream[Int] = unfold((0,1)) {
+    case (curr, next) => Some((curr, (next, curr + next)))
+  }
+  
+  def fromUsingUnfold(n: Int): Stream[Int] = unfold(n)(i => Some(i, i + 1))
+  
+  def constantUsingUnfold[A](a: A): Stream[A] = unfold(a)(i => Some(i, i))
+  
+  def onesUsingUnfold(): Stream[Int] = unfold(1)(i => Some(1, 1))
 }
