@@ -230,4 +230,12 @@ object lazinessWorksheet {
                                                   //> res67: Boolean = true
   Stream(1, 3, 5).zipAll(Stream(2, 4)).toList == List( Some(1) -> Some(2), Some(3) -> Some(4), Some(5) -> None )
                                                   //> res68: Boolean = true
+  
+  // Test startsWith():
+  Stream(1, 2, 3).startsWith(Stream(1, 2))        //> res69: Boolean = true
+  Stream(1, 2, 3).startsWith(empty[Int])          //> res70: Boolean = true
+  Stream(1, 2, 3).startsWith(Stream(1, 2, 3))     //> res71: Boolean = true
+  !Stream(1, 2, 3).startsWith(Stream(3, 2, 1))    //> res72: Boolean = true
+  !empty[Int].startsWith(Stream(1, 2, 3))         //> res73: Boolean = true
+  !Stream(1, 2, 3).startsWith(Stream(1, 2, 3, 4)) //> res74: Boolean = true
 }

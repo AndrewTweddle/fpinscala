@@ -106,7 +106,7 @@ trait Stream[+A] {
     }
   }
   
-  def startsWith[B](s: Stream[B]): Boolean = sys.error("todo")
+  def startsWith[B](s: Stream[B]): Boolean = this.zipAll(s).takeWhile(_._2 != None).forAll(ab => ab._1 == ab._2)
 }
 
 case object Empty extends Stream[Nothing]

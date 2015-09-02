@@ -48,8 +48,9 @@ The purpose is to do the exercises and compare to the model answers.
 | 5.9         | Stream.from(n): straightforward |
 | 5.10        | fibs(): I made it more cumbersome than necessary by using nextFibs(prev, curr): Stream[Int] instead of nextFibs(curr, next) |
 | 5.11        | Stream.unfold(): No comment. |
-| 5.12        | fibs, from, constant and ones in terms of unfold: Easy |
+| 5.12        | fibs, from, constant and ones in terms of unfold: easy |
 | 5.13        | map, take, takeWhile, zipWith, zipAll in terms of unfold: Fairly easy. But beware of getting the order of parameters wrong. |
+| 5.14        | Implement startsWith using previous functions: easy |
 
 ## Tips
 
