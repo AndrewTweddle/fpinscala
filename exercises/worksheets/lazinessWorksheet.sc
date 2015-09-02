@@ -199,4 +199,35 @@ object lazinessWorksheet {
   onesUsingUnfold().take(3).toList == List(1, 1, 1)
                                                   //> res56: Boolean = true
   onesUsingUnfold().take(0).toList == List()      //> res57: Boolean = true
+  
+  
+  // Test mapUsingUnfold():
+  Stream(1, 2, 3).mapUsingUnfold(makeOdd).toList == List(1, 3, 5)
+                                                  //> making odd number 1
+                                                  //| making odd number 2
+                                                  //| making odd number 3
+                                                  //| res58: Boolean = true
+  Stream(1, 2, 3, 4, 5).takeUsingUnfold(3).toList == List(1, 2, 3)
+                                                  //> res59: Boolean = true
+	Stream(1, 2, 3, 4, 5).takeWhileUsingUnfold(_ < 3).toList == List(1, 2)
+                                                  //> res60: Boolean = true
+  // Test zipWithUsingUnfold():
+  Stream(1, 3, 5).zipWithUsingUnfold(Stream(2, 4, 6)){_ + _}.toList == List(3, 7, 11)
+                                                  //> res61: Boolean = true
+  Stream(1, 3, 5, 7).zipWithUsingUnfold(Stream(2, 4, 6)){_ + _}.toList == List(3, 7, 11)
+                                                  //> res62: Boolean = true
+  Stream(1, 3, 5).zipWithUsingUnfold(Stream(2, 4, 6, 8)){_ + _}.toList == List(3, 7, 11)
+                                                  //> res63: Boolean = true
+  
+  // Test zipAll():
+  empty[Int].zipAll(Stream(2)).toList == List( None -> Some(2))
+                                                  //> res64: Boolean = true
+  Stream(1, 3, 5).zipAll(empty).toList == List( Some(1) -> None, Some(3) -> None, Some(5) -> None )
+                                                  //> res65: Boolean = true
+  Stream(1, 3).zipAll(Stream(2, 4, 6)).toList == List( Some(1) -> Some(2), Some(3) -> Some(4), None -> Some(6) )
+                                                  //> res66: Boolean = true
+  Stream(1, 3, 5).zipAll(Stream(2, 4, 6)).toList == List( Some(1) -> Some(2), Some(3) -> Some(4), Some(5) -> Some(6) )
+                                                  //> res67: Boolean = true
+  Stream(1, 3, 5).zipAll(Stream(2, 4)).toList == List( Some(1) -> Some(2), Some(3) -> Some(4), Some(5) -> None )
+                                                  //> res68: Boolean = true
 }
