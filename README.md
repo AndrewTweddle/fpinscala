@@ -52,6 +52,7 @@ The purpose is to do the exercises and compare to the model answers.
 | 5.13        | map, take, takeWhile, zipWith, zipAll in terms of unfold: Fairly easy. But beware of getting the order of parameters wrong. |
 | 5.14        | Implement startsWith using previous functions: easy |
 | 5.15        | Implement tails using unfold. It was tricky to include the empty stream. I used Option. The model answer just appended it. |
+| 5.16        | Implement scanRight: a streaming foldRight. Hard. My solution was verbose. Model answer used foldRight. Both weren't lazy enough (see worksheet for discussion). |
 
 ## Tips
 
@@ -68,6 +69,7 @@ The purpose is to do the exercises and compare to the model answers.
 10. Make a method final to allow it to be made tail recursive. See Stream.drop in the model answer.
 11. When two case clauses have the same right hand side, consider whether the matches can be re-ordered to collapse them into one. See the model answer for Stream.drop() which does this.
 12. If ignoring a parameter in a lambda expression, don't give it a name. Use _ to make it obvious that it is being ignored (see the model answer for Stream.headOption).
+13. If seeing "by name" parameters, consider whether a "lazy val" is needed to avoid multiple evaluations of the parameter value.
 
 ## Thoughts
 

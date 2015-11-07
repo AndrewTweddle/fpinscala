@@ -244,4 +244,37 @@ object lazinessWorksheet {
                                                   //> res75: Boolean = true
   Empty.tails.map(_.toList).toList == List(List())//> res76: Boolean = true
   
+  // Test scanRight:
+  val expected = List(6, 5, 3, 0)                 //> expected  : List[Int] = List(6, 5, 3, 0)
+  Stream(1, 2, 3).scanRight(0)(_ + _).toList == expected
+                                                  //> res77: Boolean = true
+  // Check linear:
+  def addAndLog(a: Int, b: => Int): Int = {
+    val result = a + b
+    println(s"$a + $b = $result")
+    result
+  }                                               //> addAndLog: (a: Int, b: => Int)Int
+  val sumStream = Stream(1, 2, 3).scanRight(0)(addAndLog)
+                                                  //> 3 + 0 = 3
+                                                  //| 2 + 3 = 5
+                                                  //| 1 + 5 = 6
+                                                  //| sumStream  : fpinscala.laziness.Stream[Int] = Cons(<function0>,<function0>)
+                                                  //| 
+  val sumList = sumStream.toList                  //> sumList  : List[Int] = List(6, 5, 3, 0)
+  sumList == expected                             //> res78: Boolean = true
+  
+  // Hmmm... So I'm not happy that my solution evaluates eagerly, even though a stream should be lazy
+  // Let's compare the above behaviour to the model answer:
+  val modelSumStream = Stream(1, 2, 3).modelAnswerScanRight(0)(addAndLog)
+                                                  //> 3 + 0 = 3
+                                                  //| 2 + 3 = 5
+                                                  //| 1 + 5 = 6
+                                                  //| modelSumStream  : fpinscala.laziness.Stream[Int] = Cons(<function0>,<functi
+                                                  //| on0>)
+  val modelSumList = modelSumStream.toList        //> modelSumList  : List[Int] = List(6, 5, 3, 0)
+  modelSumList == expected                        //> res79: Boolean = true
+  // So it looks like the model answer is a bit too eager as well.
+  // Partially this is to be expected.
+  // You can't calculate the first item of the output stream without traversing the entire input stream.
+  // But I would have preferred the calculations to be deferred until the first item is retrieved.
 }
