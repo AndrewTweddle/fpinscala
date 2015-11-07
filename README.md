@@ -51,6 +51,7 @@ The purpose is to do the exercises and compare to the model answers.
 | 5.12        | fibs, from, constant and ones in terms of unfold: easy |
 | 5.13        | map, take, takeWhile, zipWith, zipAll in terms of unfold: Fairly easy. But beware of getting the order of parameters wrong. |
 | 5.14        | Implement startsWith using previous functions: easy |
+| 5.15        | Implement tails using unfold. It was tricky to include the empty stream. I used Option. The model answer just appended it. |
 
 ## Tips
 

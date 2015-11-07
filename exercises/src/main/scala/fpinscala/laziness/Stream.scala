@@ -1,8 +1,8 @@
 package fpinscala.laziness
 
 import Stream._
-trait Stream[+A] {
-
+sealed trait Stream[+A] {
+  
   def foldRight[B](z: => B)(f: (A, => B) => B): B = // The arrow `=>` in front of the argument type `B` means that the function `f` takes its second argument by name and may choose not to evaluate it.
     this match {
       case Cons(h,t) => f(h(), t().foldRight(z)(f)) // If `f` doesn't evaluate its second argument, the recursion never occurs.
@@ -107,6 +107,12 @@ trait Stream[+A] {
   }
   
   def startsWith[B](s: Stream[B]): Boolean = this.zipAll(s).takeWhile(_._2 != None).forAll(ab => ab._1 == ab._2)
+  
+  def tails: Stream[Stream[A]] = unfold[Stream[A], Option[Stream[A]]](Some(this)) {
+    case None => None
+    case Some(Empty) => Some(Empty, None)
+    case Some(s @ Cons(h, t)) => Some((s, Some(t())))
+  }
 }
 
 case object Empty extends Stream[Nothing]
@@ -152,5 +158,4 @@ object Stream {
   def constantUsingUnfold[A](a: A): Stream[A] = unfold(a)(i => Some(i, i))
   
   def onesUsingUnfold(): Stream[Int] = unfold(1)(i => Some(1, 1))
-  
 }

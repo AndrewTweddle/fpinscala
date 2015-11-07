@@ -238,4 +238,10 @@ object lazinessWorksheet {
   !Stream(1, 2, 3).startsWith(Stream(3, 2, 1))    //> res72: Boolean = true
   !empty[Int].startsWith(Stream(1, 2, 3))         //> res73: Boolean = true
   !Stream(1, 2, 3).startsWith(Stream(1, 2, 3, 4)) //> res74: Boolean = true
+  
+  // Test tails:
+  Stream(1, 2, 3).tails.map(_.toList).toList == List(List(1,2,3), List(2,3), List(3), List.empty)
+                                                  //> res75: Boolean = true
+  Empty.tails.map(_.toList).toList == List(List())//> res76: Boolean = true
+  
 }
