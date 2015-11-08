@@ -56,7 +56,7 @@ The purpose is to do the exercises and compare to the model answers.
 | 6.1         | nonNegativeInt(rng: RNG): (Int, RNG). Simple, but how to test it? What seed will transform to Int.MinValue? I defined a separate conversion method and tested that. |
 | 6.2         | double(rng: RNG): (Double, RNG). Simple to code. But how to test that the result is in the range [0.0, 1.0)? |
 | 6.3         | intDouble(), doubleInt(), double3(): Simple enough. |
-
+| 6.4         | ints(). Seemed easy, but I missed an opportunity to make the function tail recursive. |
 
 ## Tips
 

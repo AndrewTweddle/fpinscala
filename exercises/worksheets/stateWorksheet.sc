@@ -45,4 +45,8 @@ object stateWorksheet {
                                                   //| d7  : Double = 0.5685526188462973
                                                   //| d8  : Double = 0.9714055750519037
                                                   //| r5  : fpinscala.state.RNG = Simple(136713180821097)
+  // Test ints:
+  val (is, r6) = ints(10)(r0)                     //> is  : List[Int] = List(-249255936, -1187374355, -589698343, 1878896603, -736
+                                                  //| 789896, -284667191, 2086077588, 1220957452, 1221384887, 1820451251)
+                                                  //| r6  : fpinscala.state.RNG = Simple(265139739725951)
 }
