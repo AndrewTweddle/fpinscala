@@ -59,4 +59,17 @@ object stateWorksheet {
                                                   //| mr3  : fpinscala.state.RNG = Simple(277363943098)
   dvm2 == dbl2                                    //> res6: Boolean = true
   mr3 == rng3                                     //> res7: Boolean = true
+  
+  // Test map2:
+  val die: Rand[Int] = map(int)(intToNonNegativeInt(_) % 6 + 1)
+                                                  //> die  : fpinscala.state.RNG.Rand[Int] = <function1>
+  val sumOf2Dice = map2(die, die)(_ + _)          //> sumOf2Dice  : fpinscala.state.RNG.Rand[Int] = <function1>
+  val (s1, r7) = sumOf2Dice(r0)                   //> s1  : Int = 12
+                                                  //| r7  : fpinscala.state.RNG = Simple(80044680009303)
+  val (s2, r8) = sumOf2Dice(r7)                   //> s2  : Int = 6
+                                                  //| r8  : fpinscala.state.RNG = Simple(136713180821097)
+  val (s3, r9) = sumOf2Dice(r8)                   //> s3  : Int = 11
+                                                  //| r9  : fpinscala.state.RNG = Simple(233188714107339)
+  val (s4, r10) = sumOf2Dice(r9)                  //> s4  : Int = 7
+                                                  //| r10  : fpinscala.state.RNG = Simple(242828506128637)
 }

@@ -58,6 +58,7 @@ The purpose is to do the exercises and compare to the model answers.
 | 6.3         | intDouble(), doubleInt(), double3(): Simple enough. |
 | 6.4         | ints(). Seemed easy, but I missed an opportunity to make the function tail recursive. |
 | 6.5         | Re-implement double() using map(). Easy enough. But is it better to use a Rand[Double]? |
+| 6.6         | map2 as a state action over a random number generator. Straightforward. |
 
 ## Tips
 
