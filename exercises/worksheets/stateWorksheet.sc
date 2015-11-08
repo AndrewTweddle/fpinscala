@@ -46,8 +46,8 @@ object stateWorksheet {
                                                   //| d8  : Double = 0.9714055750519037
                                                   //| r5  : fpinscala.state.RNG = Simple(136713180821097)
   // Test ints:
-  val (is, r6) = ints(10)(r0)                     //> is  : List[Int] = List(-249255936, -1187374355, -589698343, 1878896603, -736
-                                                  //| 789896, -284667191, 2086077588, 1220957452, 1221384887, 1820451251)
+  val (is, r6) = ints(10)(r0)                     //> is  : List[Int] = List(1820451251, 1221384887, 1220957452, 2086077588, -2846
+                                                  //| 67191, -736789896, 1878896603, -589698343, -1187374355, -249255936)
                                                   //| r6  : fpinscala.state.RNG = Simple(265139739725951)
   // Test doubleViaMap:
   val (dvm1, mr2) = doubleViaMap(rng)             //> dvm1  : Double = 0.0
@@ -77,7 +77,14 @@ object stateWorksheet {
   val (is2, r6_2) = intsViaSequence(10)(r0)       //> is2  : List[Int] = List(1820451251, 1221384887, 1220957452, 2086077588, -28
                                                   //| 4667191, -736789896, 1878896603, -589698343, -1187374355, -249255936)
                                                   //| r6_2  : fpinscala.state.RNG = Simple(265139739725951)
-  is2 == is.reverse  // identical apart from sequence
-                                                  //> res8: Boolean = true
+  is2 == is                                       //> res8: Boolean = true
   r6_2 == r6                                      //> res9: Boolean = true
+  
+  // after looking at the model answer and improving my code...
+  val (is3, r6_3) = intsViaSequenceAsRand(10)(r0) //> is3  : List[Int] = List(1820451251, 1221384887, 1220957452, 2086077588, -28
+                                                  //| 4667191, -736789896, 1878896603, -589698343, -1187374355, -249255936)
+                                                  //| r6_3  : fpinscala.state.RNG = Simple(265139739725951)
+  is3 == is2                                      //> res10: Boolean = true
+  r6_3 == r6_2                                    //> res11: Boolean = true
+  
 }

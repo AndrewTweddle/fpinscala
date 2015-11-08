@@ -67,8 +67,8 @@ object RNG {
 
   def ints(count: Int)(rng: RNG): (List[Int], RNG) =
     if (count == 0) (List(), rng) else {
-      val (lst, r1) = ints(count - 1)(rng)
-      val (i, r2) = r1.nextInt
+      val (i, r1) = rng.nextInt
+      val (lst, r2) = ints(count - 1)(r1)
       (i :: lst, r2)
     }
   
@@ -94,6 +94,10 @@ object RNG {
   def intsViaSequence(count: Int)(rng: RNG): (List[Int], RNG) = {
     (sequence(List.fill(count)(int)))(rng)
   }
+  
+  // After looking at the model answer, I should have done this rather:
+  def intsViaSequenceAsRand(count: Int): Rand[List[Int]] =
+    (sequence(List.fill(count)(int)))
 
   def flatMap[A,B](f: Rand[A])(g: A => Rand[B]): Rand[B] = ???
 }

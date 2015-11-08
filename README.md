@@ -59,6 +59,7 @@ The purpose is to do the exercises and compare to the model answers.
 | 6.4         | ints(). Seemed easy, but I missed an opportunity to make the function tail recursive. |
 | 6.5         | Re-implement double() using map(). Easy enough. But is it better to use a Rand[Double]? |
 | 6.6         | map2 as a state action over a random number generator. Straightforward. |
+| 6.7         | sequence() and intsViaSequence(). Fairly hard to get the foldRight syntax correct in sequence. Missed seeding foldRight with "unit" action. Should have omitted extra rng parameter to make intsViaSequence a more succinct state action. |
 
 ## Tips
 
@@ -76,6 +77,7 @@ The purpose is to do the exercises and compare to the model answers.
 11. When two case clauses have the same right hand side, consider whether the matches can be re-ordered to collapse them into one. See the model answer for Stream.drop() which does this.
 12. If ignoring a parameter in a lambda expression, don't give it a name. Use _ to make it obvious that it is being ignored (see the model answer for Stream.headOption).
 13. If seeing "by name" parameters, consider whether a "lazy val" is needed to avoid multiple evaluations of the parameter value.
+14. When a state action or other function type has been defined, try to express other functions more succinctly as state actions.
 
 ## Thoughts
 
