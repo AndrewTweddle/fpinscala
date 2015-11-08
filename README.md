@@ -53,6 +53,9 @@ The purpose is to do the exercises and compare to the model answers.
 | 5.14        | Implement startsWith using previous functions: easy |
 | 5.15        | Implement tails using unfold. It was tricky to include the empty stream. I used Option. The model answer just appended it. |
 | 5.16        | Implement scanRight: a streaming foldRight. Hard. My solution was verbose. Model answer used foldRight. Both weren't lazy enough (see worksheet for discussion). |
+| 6.1         | nonNegativeInt(rng: RNG): (Int, RNG). Simple, but how to test it? What seed will transform to Int.MinValue? I defined a separate conversion method and tested that. |
+| 6.2         | double(rng: RNG): (Double, RNG). Simple to code. But how to test that the result is in the range [0.0, 1.0)? |
+
 
 ## Tips
 
