@@ -29,8 +29,16 @@ object RNG {
       val (a, rng2) = s(rng)
       (f(a), rng2)
     }
-
-  def nonNegativeInt(rng: RNG): (Int, RNG) = ???
+    
+  // helper method, not nested so that it can be tested:
+  def intToNonNegativeInt(i: Int): Int = 
+    if (i >= 0) i else -(i + 1)
+    // i.e. use 2's complement to handle the situation where i1 = Int.MinValue
+  
+  def nonNegativeInt(rng: RNG): (Int, RNG) = {
+    val (i1, rng2) = rng.nextInt
+    (intToNonNegativeInt(i1), rng2)
+  }
 
   def double(rng: RNG): (Double, RNG) = ???
 
