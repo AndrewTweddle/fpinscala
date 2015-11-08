@@ -87,4 +87,14 @@ object stateWorksheet {
   is3 == is2                                      //> res10: Boolean = true
   r6_3 == r6_2                                    //> res11: Boolean = true
   
+  // Test flatMap and nonNegativeLessThan:
+  val throwManyDice = sequence(List.fill(60)(nonNegativeLessThan(6)))
+                                                  //> throwManyDice  : fpinscala.state.RNG.Rand[List[Int]] = <function1>
+  val throws = throwManyDice(r0)                  //> throws  : (List[Int], fpinscala.state.RNG) = (List(5, 5, 4, 0, 4, 5, 5, 0, 
+                                                  //| 4, 5, 2, 3, 4, 1, 0, 0, 3, 2, 1, 0, 2, 3, 1, 5, 1, 4, 3, 3, 0, 4, 1, 2, 5, 
+                                                  //| 1, 0, 5, 0, 3, 3, 1, 1, 0, 1, 3, 2, 5, 5, 0, 1, 3, 3, 1, 0, 5, 3, 4, 2, 2, 
+                                                  //| 1, 4),Simple(44147254380609))
+  val histogram = throws._1.groupBy(_ + 1).mapValues(_.length)
+                                                  //> histogram  : scala.collection.immutable.Map[Int,Int] = Map(5 -> 8, 1 -> 11,
+                                                  //|  6 -> 11, 2 -> 12, 3 -> 7, 4 -> 11)
 }

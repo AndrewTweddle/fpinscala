@@ -99,7 +99,37 @@ object RNG {
   def intsViaSequenceAsRand(count: Int): Rand[List[Int]] =
     (sequence(List.fill(count)(int)))
 
-  def flatMap[A,B](f: Rand[A])(g: A => Rand[B]): Rand[B] = ???
+  def flatMap[A,B](f: Rand[A])(g: A => Rand[B]): Rand[B] =
+    rng => {
+      val (a, r2) = f(rng)
+      g(a)(r2)
+    }
+    
+  /* Explanation of "i - mod + n - 1" formula below:
+   * 
+   * i - mod n is the start of the block of n numbers that i is in.
+   * If the final block fits into the Int range perfectly, then
+   * adding "n-1" allows i to be any item in the block,
+   * 
+   * including the final or (n-1)th item, without overflowing.
+   * But adding n would cause overflow even if the final block fitted perfectly.
+   * If the final block doesn't fit, then the (n-1)th item will overflow.
+   */
+  def nonNegativeLessThan(n: Int): Rand[Int] = flatMap(nonNegativeInt) {
+    i: Int => {
+      val mod = i % n
+      if (i - mod + n - 1 < 0)  
+      {
+        // try again, using the next random number:
+        nonNegativeLessThan(n)
+      }
+      else
+      {
+        // return the correct value and the current RNG:
+        unit(i % n)
+      }
+    }
+  }
 }
 
 case class State[S,+A](run: S => (A, S)) {
