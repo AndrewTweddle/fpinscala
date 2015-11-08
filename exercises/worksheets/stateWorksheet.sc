@@ -49,4 +49,14 @@ object stateWorksheet {
   val (is, r6) = ints(10)(r0)                     //> is  : List[Int] = List(-249255936, -1187374355, -589698343, 1878896603, -736
                                                   //| 789896, -284667191, 2086077588, 1220957452, 1221384887, 1820451251)
                                                   //| r6  : fpinscala.state.RNG = Simple(265139739725951)
+  // Test doubleViaMap:
+  val (dvm1, mr2) = doubleViaMap(rng)             //> dvm1  : Double = 0.0
+                                                  //| mr2  : fpinscala.state.RNG = Simple(11)
+  dvm1 == dbl1                                    //> res4: Boolean = true
+  mr2 == rng2                                     //> res5: Boolean = true
+  
+  val (dvm2, mr3) = doubleViaMap(mr2)             //> dvm2  : Double = 0.0019707889296114445
+                                                  //| mr3  : fpinscala.state.RNG = Simple(277363943098)
+  dvm2 == dbl2                                    //> res6: Boolean = true
+  mr3 == rng3                                     //> res7: Boolean = true
 }

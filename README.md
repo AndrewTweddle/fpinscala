@@ -57,6 +57,7 @@ The purpose is to do the exercises and compare to the model answers.
 | 6.2         | double(rng: RNG): (Double, RNG). Simple to code. But how to test that the result is in the range [0.0, 1.0)? |
 | 6.3         | intDouble(), doubleInt(), double3(): Simple enough. |
 | 6.4         | ints(). Seemed easy, but I missed an opportunity to make the function tail recursive. |
+| 6.5         | Re-implement double() using map(). Easy enough. But is it better to use a Rand[Double]? |
 
 ## Tips
 
