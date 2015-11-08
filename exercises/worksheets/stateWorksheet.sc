@@ -72,4 +72,12 @@ object stateWorksheet {
                                                   //| r9  : fpinscala.state.RNG = Simple(233188714107339)
   val (s4, r10) = sumOf2Dice(r9)                  //> s4  : Int = 7
                                                   //| r10  : fpinscala.state.RNG = Simple(242828506128637)
+                                                  
+  // Test intsViaSequence:
+  val (is2, r6_2) = intsViaSequence(10)(r0)       //> is2  : List[Int] = List(1820451251, 1221384887, 1220957452, 2086077588, -28
+                                                  //| 4667191, -736789896, 1878896603, -589698343, -1187374355, -249255936)
+                                                  //| r6_2  : fpinscala.state.RNG = Simple(265139739725951)
+  is2 == is.reverse  // identical apart from sequence
+                                                  //> res8: Boolean = true
+  r6_2 == r6                                      //> res9: Boolean = true
 }
