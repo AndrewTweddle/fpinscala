@@ -61,6 +61,7 @@ The purpose is to do the exercises and compare to the model answers.
 | 6.6         | map2 as a state action over a random number generator. Straightforward. |
 | 6.7         | sequence() and intsViaSequence(). Fairly hard to get the foldRight syntax correct in sequence. Missed seeding foldRight with "unit" action. Should have omitted extra rng parameter to make intsViaSequence a more succinct state action. |
 | 6.8         | flatMap() and nonNegativeLessThan() RNG action. Fairly easy apart from List[Rand[Int]].fill(...) needing to be replaced by List.fill(...) |
+| 6.9         | Use flatMap to reimplement map and map2. Fairly easy. But I used flatMap twice in map2. The inner flatMap could have been replaced with map rather. |
 
 ## Tips
 

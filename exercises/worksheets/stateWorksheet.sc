@@ -97,4 +97,28 @@ object stateWorksheet {
   val histogram = throws._1.groupBy(_ + 1).mapValues(_.length)
                                                   //> histogram  : scala.collection.immutable.Map[Int,Int] = Map(5 -> 8, 1 -> 11,
                                                   //|  6 -> 11, 2 -> 12, 3 -> 7, 4 -> 11)
+  
+  // Test mapUsingFlatMap, map2UsingFlatMap:
+  val (dvm3, mr4) = doubleViaMapUsingFlatMap(mr2) //> dvm3  : Double = 0.0019707889296114445
+                                                  //| mr4  : fpinscala.state.RNG = Simple(277363943098)
+  dvm3 == dvm2                                    //> res12: Boolean = true
+
+  // Test map2UsingFlatMap:
+  val die2: Rand[Int] = mapUsingFlatMap(int)(intToNonNegativeInt(_) % 6 + 1)
+                                                  //> die2  : fpinscala.state.RNG.Rand[Int] = <function1>
+  val sumOf2Dice2 = map2UsingFlatMap(die2, die2)(_ + _)
+                                                  //> sumOf2Dice2  : fpinscala.state.RNG.Rand[Int] = <function1>
+  val (s1_2, r7_2) = sumOf2Dice(r0)               //> s1_2  : Int = 12
+                                                  //| r7_2  : fpinscala.state.RNG = Simple(80044680009303)
+  val (s2_2, r8_2) = sumOf2Dice(r7)               //> s2_2  : Int = 6
+                                                  //| r8_2  : fpinscala.state.RNG = Simple(136713180821097)
+  val (s3_2, r9_2) = sumOf2Dice(r8)               //> s3_2  : Int = 11
+                                                  //| r9_2  : fpinscala.state.RNG = Simple(233188714107339)
+  val (s4_2, r10_2) = sumOf2Dice(r9)              //> s4_2  : Int = 7
+                                                  //| r10_2  : fpinscala.state.RNG = Simple(242828506128637)
+  
+  s1_2 == s1                                      //> res13: Boolean = true
+  s2_2 == s2                                      //> res14: Boolean = true
+  s3_2 == s3                                      //> res15: Boolean = true
+  s4_2 == s4                                      //> res16: Boolean = true
 }

@@ -130,6 +130,22 @@ object RNG {
       }
     }
   }
+  
+  def mapUsingFlatMap[A,B](s: Rand[A])(f: A => B): Rand[B] = 
+    flatMap(s) { a => unit(f(a)) }
+  
+  def map2UsingFlatMap[A,B,C](ra: Rand[A], rb: Rand[B])(f: (A, B) => C): Rand[C] = 
+    flatMap(ra) { a => 
+      flatMap(rb) { b => unit(f(a, b)) }
+    }
+    // Checked against model answer. Just use map, not flatMap, in the inner computation
+  
+  // For testing mapUsingFlatMap:
+  def doubleViaMapUsingFlatMap(rng: RNG): (Double, RNG) = (mapUsingFlatMap(int) {
+    intToNonNegativeInt(_) / (Int.MaxValue.toDouble + 1)
+  })(rng)
+  
+  
 }
 
 case class State[S,+A](run: S => (A, S)) {
