@@ -62,6 +62,7 @@ The purpose is to do the exercises and compare to the model answers.
 | 6.7         | sequence() and intsViaSequence(). Fairly hard to get the foldRight syntax correct in sequence. Missed seeding foldRight with "unit" action. Should have omitted extra rng parameter to make intsViaSequence a more succinct state action. |
 | 6.8         | flatMap() and nonNegativeLessThan() RNG action. Fairly easy apart from List[Rand[Int]].fill(...) needing to be replaced by List.fill(...) |
 | 6.9         | Use flatMap to reimplement map and map2. Fairly easy. But I used flatMap twice in map2. The inner flatMap could have been replaced with map rather. |
+| 6.10        | State - generalize unit, map, map2, flatMap, sequence. Mostly easy. Sequence was tricky until I thought of using map2 instead of hand-coding the logic. |
 
 ## Tips
 
@@ -91,6 +92,11 @@ The purpose is to do the exercises and compare to the model answers.
      The names don't reveal the intention, which is that one side should represent success and the other failure.
      As a result additional explanation is needed to explain that you should remember that "right" can also mean "correct".
   3. Even if you argue that general purpose names don't limit the use, there should still be a clue in the names that one side will short-circuit and the other not e.g. shortened and normal (short would be better, but Short is a data type).
+4. Section 6.5 says that State is short for state action, state transition or statement. 
+  1. Why not call it one of those? In State[S, A], I think of S as the state, so it's confusing to have the trait/class also called State.
+  2. The functional programming community seems to prefer brevity over precision when naming things.
+  3. Perhaps this is a consequence of FP being more mathematical than OO, so it's often more symbolic than linguistic.
+  4. In contrast, defining a "ubiquitous language" is a central tenet of DDD.
 
 # Original readme file contents
 
