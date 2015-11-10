@@ -189,5 +189,123 @@ object State {
   }
     
   type Rand[A] = State[RNG, A]
-  def simulateMachine(inputs: List[Input]): State[Machine, (Int, Int)] = ???
+  
+  // Naive implementation of the vending machine simulator:
+  def simulateMachineNaively(inputs: List[Input]): State[Machine, (Int, Int)] = {
+    State[Machine, (Int, Int)](
+      pre => {
+        val states = inputs.map(inputToState)
+        val finalMachine = states.foldLeft(pre) { 
+          (pre, r) => {
+            val ((_, _), post) = r.run(pre) 
+              // It feels wrong to generate then ignore the (Int, Int) pairs 
+            post
+          }
+        }
+        ((finalMachine.coins, finalMachine.candies), finalMachine)
+      }
+    )
+  }
+  
+  def inputToState(input: Input): State[Machine, (Int, Int)] = {
+    input match {
+      case Coin => coinToState
+      case Turn => turnToState
+    }
+  }
+  
+  val coinToState = State[Machine, (Int, Int)]{ pre =>
+    val post = 
+      if (pre.locked && pre.candies > 0)
+        pre.copy(locked = false, coins = pre.coins + 1)
+      else
+        pre
+    ((post.coins, post.candies), post)
+  }
+  
+  val turnToState = State[Machine, (Int, Int)] { pre =>
+    val post =
+      if (pre.locked || pre.candies == 0) 
+        pre 
+      else 
+        pre.copy(locked = true, candies = pre.candies - 1)
+    ((post.coins, post.candies), post)
+  }
+
+  /* One issue with the above approach, is that the (coins, candies) "A value" 
+   * is artificially created and then ignored most of the time.
+   */  
+  
+  // In practice, there was no need for modify. Avoid States until the end:
+  def getMachineModifier(input: Input): Machine => Machine =
+    input match {
+      case Coin => coinMachineModifier
+      case Turn => turnMachineModifier
+    }
+  
+  val coinMachineModifier: Machine => Machine = pre =>
+    if (pre.locked && pre.candies > 0)
+      pre.copy(locked = false, coins = pre.coins + 1)
+    else
+      pre
+  
+  val turnMachineModifier: Machine => Machine = pre =>
+    if (pre.locked || pre.candies == 0) 
+      pre 
+    else 
+      pre.copy(locked = true, candies = pre.candies - 1)
+  
+  def simulateMachineViaModifiers(inputs: List[Input]): State[Machine, (Int, Int)] = { 
+    State[Machine, (Int, Int)]( 
+      pre => {
+        val modifiers = inputs.map(getMachineModifier(_))
+        val post = modifiers.foldLeft(pre) { (mach, modif) => modif(mach) }
+        ((post.coins, post.candies ), post)
+      }
+    )
+  }
+  
+  /* The model answer uses get and modify 
+   * i.e. the approach advised in section 6.6.
+   * 
+   * It also uses Sequence, but in a kludgy way.
+   * It feels like an alternative to Sequence is needed 
+   * which only returns the final value and state e.g. combine. 
+   * Re-write the model answer using combine: 
+   */
+    
+  // Name with underscores, otherwise Applicative.scala breaks...
+  def _modify[S](f: S => S): State[S, Unit] = for {
+    s <- _get
+    _ <- _set(f(s))
+  } yield ()
+  
+  def _get[S]: State[S, S] = State(s => (s, s))
+  def _set[S](s: S): State[S, Unit] = State(_ => ((), s))
+  
+  def combine[S, A](stateActions: List[State[S, A]]): State[S, A] =
+    stateActions.reduce((s1, s2) => s1.map2(s2) { (a1, a2) => a2 })
+  
+  def modifyStateWithInput(i: Input)(s: Machine): Machine = {
+    (i, s) match {
+      case (_, Machine(_, 0, _)) => s
+      case (Turn, Machine(true, _, _)) => s
+      case (Coin, Machine(false, _, _)) => s
+      case (Turn, Machine(_, cdy, _)) => s.copy(locked=true, candies = cdy - 1)
+      case (Coin, Machine(_, _, cns)) => s.copy(locked=false, coins = cns + 1)
+    }  
+  }
+  
+  def simulateMachineViaModify(inputs: List[Input]): State[Machine, (Int, Int)] = {
+    State(
+      pre => { 
+        val states = inputs.map(i => _modify(modifyStateWithInput(i))) 
+        val postState = combine(states)
+        val (_, post) = postState.run(pre)
+        ((post.coins, post.candies ), post)
+      } 
+    )
+  }
+  
+  val simulateMachine = simulateMachineViaModifiers _
 }

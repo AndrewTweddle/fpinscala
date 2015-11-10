@@ -63,6 +63,7 @@ The purpose is to do the exercises and compare to the model answers.
 | 6.8         | flatMap() and nonNegativeLessThan() RNG action. Fairly easy apart from List[Rand[Int]].fill(...) needing to be replaced by List.fill(...) |
 | 6.9         | Use flatMap to reimplement map and map2. Fairly easy. But I used flatMap twice in map2. The inner flatMap could have been replaced with map rather. |
 | 6.10        | State - generalize unit, map, map2, flatMap, sequence. Mostly easy. Sequence was tricky until I thought of using map2 instead of hand-coding the logic. |
+| 6.11        | Finite state automation for a candy dispenser. Very hard. I have 3 alternate solutions. I don't get how the model answer returns a final state but not all intermediate states. |
 
 ## Tips
 
@@ -97,6 +98,11 @@ The purpose is to do the exercises and compare to the model answers.
   2. The functional programming community seems to prefer brevity over precision when naming things.
   3. Perhaps this is a consequence of FP being more mathematical than OO, so it's often more symbolic than linguistic.
   4. In contrast, defining a "ubiquitous language" is a central tenet of DDD.
+5. The model answer for the candy dispenser makes use of the sequence() method that produces a list of states, but ignores it.
+  1. I don't like this. It feels like a hack. The purpose of the sequence() method has been ignored.
+  2. The State.modify() method returns State[S, Unit]. At least Unit expresses the lack of interest in the return value.
+  3. It still feels contrived. If the state is all we're interested in, then the API should reflect that directly.
+  4. Maybe it's just the wrong API for this problem.
 
 # Original readme file contents
 
